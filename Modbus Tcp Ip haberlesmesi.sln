@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.779
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "WindowsFormsApp1\WindowsFormsApp1.csproj", "{B8A3D0F7-140E-4132-B625-3C3EFD38FE22}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Communication User Interface", "WindowsFormsApp1\Communication User Interface.csproj", "{B8A3D0F7-140E-4132-B625-3C3EFD38FE22}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

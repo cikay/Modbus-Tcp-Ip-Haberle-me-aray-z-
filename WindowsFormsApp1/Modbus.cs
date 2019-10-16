@@ -8,51 +8,40 @@ using EasyModbus;
 
 namespace WindowsFormsApp1
 {
-    internal class Modbus
+    public class Modbus
     {
-        static ModbusClient modbusClient;
+        public static ModbusClient modbusClient = new ModbusClient() { IPAddress = "192.168.2.76", Port = 502 };
 
-        static internal void Connect(Label lb_ConnectionStatus)
+
+        public static void Connect(Label lb_ConnectionStatus)
         {
             try
             {
-                modbusClient = new ModbusClient("192.168.2.76", 502);
                 modbusClient.Connect();
-                modbusClient.WriteMultipleCoils(0, new bool[] { true, true, true, true, true, true, true, true, true, true });    //Write Coils starting with Address 5
-                lb_ConnectionStatus.Text = "Connected via Modbus Tcp/Ip Protokol";
-               
-               
+                lb_ConnectionStatus.Text = "Bağlandı!";
             }
             catch(Exception ex)
             {
-                lb_ConnectionStatus.Text = "Can not connact!";
+                lb_ConnectionStatus.Text = "Bağlanamadı!";
             }
-
-          
         }
 
 
 
-        static internal void DisConnect(Label lb_ConnectionStatus)
+        internal static void DisConnect(Label lb_ConnectionStatus)
         {
             try
             {
-
                 modbusClient.Disconnect();
-                lb_ConnectionStatus.Text = "Not connect";
+                lb_ConnectionStatus.Text = "Bağlı değil!";
             }
             catch
             {
 
             }
-
-           
         }
 
-        internal void Write(int adress, int value)
-        {
-            modbusClient.WriteSingleRegister(adress, value);
-        }
+      
 
     }
 }

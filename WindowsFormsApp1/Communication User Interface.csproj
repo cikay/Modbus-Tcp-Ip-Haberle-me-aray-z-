@@ -38,6 +38,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,17 +51,67 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="CoilControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CoilControl.Designer.cs">
+      <DependentUpon>CoilControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ChangeAdressForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Forms\ChangeAdressForm.Designer.cs">
+      <DependentUpon>ChangeAdressForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ListProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ListProducts.Designer.cs">
+      <DependentUpon>ListProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="lb_Adress.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="lb_Adress.Designer.cs">
+      <DependentUpon>lb_Adress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="deneme1.cs" />
+    <Compile Include="Deneme\denemeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Deneme\denemeForm.Designer.cs">
+      <DependentUpon>denemeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MainFormCUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainFormCUI.Designer.cs">
+      <DependentUpon>MainFormCUI.cs</DependentUpon>
     </Compile>
     <Compile Include="Modbus.cs" />
+    <Compile Include="Forms\Plc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Plc.Designer.cs">
+      <DependentUpon>Plc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Product.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Deneme\denemeForm.resx">
+      <DependentUpon>denemeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ChangeAdressForm.resx">
+      <DependentUpon>ChangeAdressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ListProducts.resx">
+      <DependentUpon>ListProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainFormCUI.resx">
+      <DependentUpon>MainFormCUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Plc.resx">
+      <DependentUpon>Plc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -70,6 +122,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="TypeForm.resx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -83,5 +136,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

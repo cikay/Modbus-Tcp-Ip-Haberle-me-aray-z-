@@ -10,3 +10,16 @@ C:\Users\Muzaffercky\Desktop\Modbus Tcp Ip haberlesmesi\WindowsFormsApp1\bin\Deb
 C:\Users\Muzaffercky\Desktop\Modbus Tcp Ip haberlesmesi\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CopyComplete
 C:\Users\Muzaffercky\Desktop\Modbus Tcp Ip haberlesmesi\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 C:\Users\Muzaffercky\Desktop\Modbus Tcp Ip haberlesmesi\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+E:\Yazılım projeleri\Modbus Tcp Ip haberlesmesi\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+E:\Yazılım projeleri\Modbus Tcp Ip haberlesmesi\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+E:\Yazılım projeleri\Modbus Tcp Ip haberlesmesi\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+E:\Yazılım projeleri\Modbus Tcp Ip haberlesmesi\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csprojAssemblyReference.cache
+E:\Yazılım projeleri\Modbus Tcp Ip haberlesmesi\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+E:\Yazılım projeleri\Modbus Tcp Ip haberlesmesi\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
+E:\Yazılım projeleri\Modbus Tcp Ip haberlesmesi\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
+E:\Yazılım projeleri\Modbus Tcp Ip haberlesmesi\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CopyComplete
+E:\Yazılım projeleri\Modbus Tcp Ip haberlesmesi\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+E:\Yazılım projeleri\Modbus Tcp Ip haberlesmesi\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+E:\Yazılım projeleri\Modbus Tcp Ip haberlesmesi\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.MainFormCUI.resources
+E:\Yazılım projeleri\Modbus Tcp Ip haberlesmesi\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.denemeForm.resources
+E:\Yazılım projeleri\Modbus Tcp Ip haberlesmesi\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Plc.resources
