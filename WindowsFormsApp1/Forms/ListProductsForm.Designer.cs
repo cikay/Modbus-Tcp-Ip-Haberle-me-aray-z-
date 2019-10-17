@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp1.Forms
 {
-    partial class ListProducts
+    partial class ListProductsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -43,9 +43,9 @@
             this.dGV_ListProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dGV_ListProducts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ProductName});
-            this.dGV_ListProducts.Location = new System.Drawing.Point(12, 104);
+            this.dGV_ListProducts.Location = new System.Drawing.Point(12, 83);
             this.dGV_ListProducts.Name = "dGV_ListProducts";
-            this.dGV_ListProducts.Size = new System.Drawing.Size(231, 353);
+            this.dGV_ListProducts.Size = new System.Drawing.Size(843, 353);
             this.dGV_ListProducts.TabIndex = 0;
             // 
             // ProductName
@@ -92,7 +92,7 @@
             this.btn_ListProducts.UseVisualStyleBackColor = true;
             this.btn_ListProducts.Click += new System.EventHandler(this.btn_ListProducts_Click);
             // 
-            // ListProducts
+            // ListProductsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -103,11 +103,12 @@
             this.Controls.Add(this.btn_Connect);
             this.Controls.Add(this.btn_DisConnect);
             this.Controls.Add(this.dGV_ListProducts);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimizeBox = false;
-            this.Name = "ListProducts";
+            this.Name = "ListProductsForm";
             this.ShowIcon = false;
             this.Text = "Ürün listesi";
-            this.Load += new System.EventHandler(this.ListProducts_Load);
+            this.Load += new System.EventHandler(this.ListProductsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dGV_ListProducts)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

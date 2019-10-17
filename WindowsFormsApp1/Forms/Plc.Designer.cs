@@ -33,8 +33,6 @@
             this.btn_Connect = new System.Windows.Forms.Button();
             this.btn_DisConnect = new System.Windows.Forms.Button();
             this.tLp_PlcMemory = new System.Windows.Forms.TableLayoutPanel();
-            this.btn_Write = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -76,18 +74,19 @@
             // 
             // tLp_PlcMemory
             // 
-            this.tLp_PlcMemory.ColumnCount = 11;
-            this.tLp_PlcMemory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tLp_PlcMemory.ColumnCount = 12;
             this.tLp_PlcMemory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tLp_PlcMemory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tLp_PlcMemory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tLp_PlcMemory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tLp_PlcMemory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tLp_PlcMemory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tLp_PlcMemory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tLp_PlcMemory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tLp_PlcMemory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tLp_PlcMemory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 116F));
+            this.tLp_PlcMemory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tLp_PlcMemory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tLp_PlcMemory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tLp_PlcMemory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tLp_PlcMemory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tLp_PlcMemory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tLp_PlcMemory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tLp_PlcMemory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tLp_PlcMemory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tLp_PlcMemory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tLp_PlcMemory.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tLp_PlcMemory.Location = new System.Drawing.Point(12, 81);
             this.tLp_PlcMemory.Name = "tLp_PlcMemory";
             this.tLp_PlcMemory.RowCount = 12;
@@ -103,34 +102,15 @@
             this.tLp_PlcMemory.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tLp_PlcMemory.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tLp_PlcMemory.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tLp_PlcMemory.Size = new System.Drawing.Size(1026, 366);
+            this.tLp_PlcMemory.Size = new System.Drawing.Size(991, 366);
             this.tLp_PlcMemory.TabIndex = 23;
-            // 
-            // btn_Write
-            // 
-            this.btn_Write.Location = new System.Drawing.Point(963, 477);
-            this.btn_Write.Name = "btn_Write";
-            this.btn_Write.Size = new System.Drawing.Size(75, 32);
-            this.btn_Write.TabIndex = 24;
-            this.btn_Write.Text = "Yaz";
-            this.btn_Write.UseVisualStyleBackColor = true;
-            this.btn_Write.Click += new System.EventHandler(this.btn_Write_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(170, 16);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(253, 20);
-            this.textBox1.TabIndex = 25;
             // 
             // Plc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1121, 560);
+            this.ClientSize = new System.Drawing.Size(1124, 560);
             this.ControlBox = false;
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.btn_Write);
             this.Controls.Add(this.tLp_PlcMemory);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.lb_ConnectionStatus);
@@ -149,7 +129,5 @@
         private System.Windows.Forms.Button btn_Connect;
         private System.Windows.Forms.Button btn_DisConnect;
         private System.Windows.Forms.TableLayoutPanel tLp_PlcMemory;
-        private System.Windows.Forms.Button btn_Write;
-        private System.Windows.Forms.TextBox textBox1;
     }
 }

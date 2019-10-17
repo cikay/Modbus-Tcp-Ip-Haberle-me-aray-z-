@@ -11,43 +11,36 @@ namespace WindowsFormsApp1
         #region Timer,Thread
 
         
-        Thread thread1;
-        Thread thread2;
+        Thread Th_UpdateCoilsValue;
+       
 
-        System.Timers.Timer timer1 = new System.Timers.Timer();
-        System.Timers.Timer timer2 = new System.Timers.Timer();
+        System.Timers.Timer timer_UpdateCoilsValue = new System.Timers.Timer();
+       
         #endregion
 
         public Plc()
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
+
             #region İşlem1 için timer1 ve thread1 İşlem2 için timer2 ve thread2 aynı şekilde işlem arttıkça bunları çoğaly
             
-            timer1.Enabled = true;
-            timer2.Enabled = true;
-            timer1.Interval = 100;
-            timer2.Interval = 500;
-            timer1.Elapsed += Timer1_Elapsed;
-            timer2.Elapsed += Timer2_Elapsed;
-
-            timer1.Start();
-            timer2.Start();
+            timer_UpdateCoilsValue.Enabled = true;
+            timer_UpdateCoilsValue.Interval = 500;
+            timer_UpdateCoilsValue.Elapsed += timer_UpdateCoilsValue_Elapsed;
+            timer_UpdateCoilsValue.Start();
             #endregion
 
 
         }
 
-        private void Timer1_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        private void timer_UpdateCoilsValue_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            thread1 = new Thread(new ThreadStart(WriteCoils));
-            thread1.Start();
+            Th_UpdateCoilsValue = new Thread(new ThreadStart(UptadeCoilsValue));
+            Th_UpdateCoilsValue.Start();
+
         }
-        private void Timer2_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-        {
-            thread2 = new Thread(new ThreadStart(TestProcess));
-            thread2.Start();
-        }
+
 
         private void Plc_Load(object sender, EventArgs e)
         {
@@ -69,7 +62,7 @@ namespace WindowsFormsApp1
         {
 
 
-            int StartingAdress = 1;
+            int StartingAdress = 0;
             int row = 0;
             int column = 0;
 
@@ -78,20 +71,22 @@ namespace WindowsFormsApp1
             lb_Adress.Name = lb_Adress.Text;
             lb_Adress.Location = new Point(10, 6);
             tLp_PlcMemory.Controls.Add(lb_Adress, column, row);
+           
             column++;
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 11; i++)
             {
                 Label lb_AdressInfo = new Label();
-                lb_AdressInfo.Text = (i + 1).ToString();
+                lb_AdressInfo.Text = (i ).ToString();
                 lb_AdressInfo.TextAlign = ContentAlignment.MiddleCenter;
                 lb_AdressInfo.Name = lb_AdressInfo.Text;
                 lb_AdressInfo.Location = new Point(10, 6);
                 tLp_PlcMemory.Controls.Add(lb_AdressInfo, column, row);
+              
                 column++;
             }
 
-            row++;
+            row=1;
 
 
             while (true)
@@ -104,14 +99,14 @@ namespace WindowsFormsApp1
 
                 tLp_PlcMemory.Controls.Add(lb_Coil, column, row);
 
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 11; i++)
                 {
                     column++;
                     CoilControl Coil = new CoilControl();
-                    Coil.Text = "0";
+                    Coil.Text = "-";
                     Coil.Adress = StartingAdress;
                     Coil.Value = false;
-                    Coil.Size = new Size(70, 18);
+                    Coil.Size = new Size(60, 18);
                     Coil.Location = new Point(10, 6);
                     Coil.Visible = true;
                     Coil.BackColor = Color.DimGray;
@@ -122,17 +117,18 @@ namespace WindowsFormsApp1
 
                 }
 
-                if (column == 10 && row == 10) break;
+                if (column == 11 && row == 11) break;
                 row++;
+                
             }
         }
 
        
-        private void WriteCoils()
+        private void UptadeCoilsValue()
         {
 
             bool[] CoilsValue = new bool[100];
-            CoilsValue = Modbus.modbusClient.ReadCoils(1, 100);
+            CoilsValue = Modbus.modbusClient.ReadCoils(0, 121);
 
             int column=1, row = 1, index=0;
             string text;
@@ -146,37 +142,32 @@ namespace WindowsFormsApp1
 
 
 
-                for (int i = 0; i < 9; i++)
+                for (int i = 0; i < 11; i++)
                 {
                     Coil = (CoilControl)tLp_PlcMemory.GetControlFromPosition(column, row);
                     
                     text = CoilsValue[index].ToString();
-                  
 
-                    //Coil.BackColor = Color.Lime;
                     Coil.Text = text;
-
-                    //if (String.Compare(Coil.Text, "false") == 0) Coil.BackColor = Color.DeepSkyBlue;
-                    //else if (String.Compare(Coil.Text, "true") == 0) Coil.BackColor = Color.DimGray;
-
+                    if (String.Compare(Coil.Text, "True") == 0) Coil.BackColor = Color.DeepSkyBlue;
+                    else if (String.Compare(Coil.Text, "False") == 0) Coil.BackColor = Color.DimGray;
+                    
                     column++;
                     index++;
                 }
-
-                if (column == 10 && row == 10) break;
+              
+                if (column == 12 && row == 11) break;
 
                 row++;
             }
         }
         public delegate void ProcessInvoker();
 
-        int i=0;
+        
 
         void TestProcess()
         {
-            
-            textBox1.Text = i.ToString();
-            i++;
+           
         }
 
         private void btn_Connect_Click_1(object sender, EventArgs e)

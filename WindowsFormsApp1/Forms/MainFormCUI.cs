@@ -52,6 +52,8 @@ namespace WindowsFormsApp1
                 this.ActiveForms.Add(typeof(TSourse), form);
             }
 
+            form.SetBounds(0, 0, this.Width, this.Height);
+
         }
 
         private void form_FormClosed(Object sender, FormClosedEventArgs e)
@@ -61,7 +63,7 @@ namespace WindowsFormsApp1
 
         private void ürünleriListeleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.ShowForm<Forms.ListProducts>();
+            this.ShowForm<Forms.ListProductsForm>();
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)

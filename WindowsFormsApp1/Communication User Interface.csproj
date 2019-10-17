@@ -63,11 +63,11 @@
     <Compile Include="Forms\ChangeAdressForm.Designer.cs">
       <DependentUpon>ChangeAdressForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ListProducts.cs">
+    <Compile Include="Forms\ListProductsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ListProducts.Designer.cs">
-      <DependentUpon>ListProducts.cs</DependentUpon>
+    <Compile Include="Forms\ListProductsForm.Designer.cs">
+      <DependentUpon>ListProductsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="lb_Adress.cs">
       <SubType>Component</SubType>
@@ -104,8 +104,8 @@
     <EmbeddedResource Include="Forms\ChangeAdressForm.resx">
       <DependentUpon>ChangeAdressForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ListProducts.resx">
-      <DependentUpon>ListProducts.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ListProductsForm.resx">
+      <DependentUpon>ListProductsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainFormCUI.resx">
       <DependentUpon>MainFormCUI.cs</DependentUpon>
