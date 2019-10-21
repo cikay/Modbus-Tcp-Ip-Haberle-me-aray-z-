@@ -12,7 +12,7 @@ namespace WindowsFormsApp1
 {
     public partial class denemeForm : Form
     {
-        Modbus ComModbus = new Modbus();
+        Modbus modbus = new Modbus();
 
         public denemeForm()
         {
@@ -21,19 +21,19 @@ namespace WindowsFormsApp1
 
         private void btn_Write_Click(object sender, EventArgs e)
         {
-            Modbus.modbusClient.WriteSingleRegister(Convert.ToInt32(tB_Adress.Text), Convert.ToInt32(tB_Value.Text));
+            modbus.modbusClient.WriteSingleRegister(Convert.ToInt32(tB_Adress.Text), Convert.ToInt32(tB_Value.Text));
             tB_Adress.Text = string.Empty;
             tB_Value.Text = string.Empty;
         }
 
         private void btn_Connect_Click(object sender, EventArgs e)
         {
-            Modbus.Connect(lb_ConnectionStatus);
+            modbus.Connect(lb_ConnectionStatus);
         }
 
         private void btn_DisConnect_Click(object sender, EventArgs e)
         {
-            Modbus.DisConnect(lb_ConnectionStatus);
+            modbus.DisConnect(lb_ConnectionStatus);
         }
 
         private void denemeForm_Load(object sender, EventArgs e)
@@ -43,7 +43,7 @@ namespace WindowsFormsApp1
 
         private void btn_Read_Click(object sender, EventArgs e)
         {
-            int[] register = Modbus.modbusClient.ReadHoldingRegisters(Convert.ToInt32(tB_Adress.Text), 1);
+            int[] register = modbus.modbusClient.ReadHoldingRegisters(Convert.ToInt32(tB_Adress.Text), 1);
 
 
 

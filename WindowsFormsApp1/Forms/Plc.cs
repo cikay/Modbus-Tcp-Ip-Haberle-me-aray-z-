@@ -12,7 +12,7 @@ namespace WindowsFormsApp1
 
         
         Thread Th_UpdateCoilsValue;
-       
+        Modbus modbus = new Modbus();
 
         System.Timers.Timer timer_UpdateCoilsValue = new System.Timers.Timer();
        
@@ -46,7 +46,7 @@ namespace WindowsFormsApp1
         {
             try
             {
-                Modbus.modbusClient.Connect();
+                modbus.modbusClient.Connect();
                 CreateCoil();
             }
             catch
@@ -128,7 +128,7 @@ namespace WindowsFormsApp1
         {
 
             bool[] CoilsValue = new bool[100];
-            CoilsValue = Modbus.modbusClient.ReadCoils(0, 121);
+            CoilsValue = modbus.modbusClient.ReadCoils(0, 121);
 
             int column=1, row = 1, index=0;
             string text;
@@ -172,12 +172,12 @@ namespace WindowsFormsApp1
 
         private void btn_Connect_Click_1(object sender, EventArgs e)
         {
-            Modbus.Connect(lb_ConnectionStatus);
+            modbus.Connect(lb_ConnectionStatus);
         }
 
         private void btn_DisConnect_Click_1(object sender, EventArgs e)
         {
-            Modbus.DisConnect(lb_ConnectionStatus);
+            modbus.DisConnect(lb_ConnectionStatus);
         }
 
       
@@ -186,7 +186,7 @@ namespace WindowsFormsApp1
         {
             int column = 1, row = 1, Adress;
             string text;
-            bool[] writingCoilsData = Modbus.modbusClient.ReadCoils(0, 100);
+            bool[] writingCoilsData = modbus.modbusClient.ReadCoils(0, 100);
             int[] changedCoilStatus = new int[100];
 
 
