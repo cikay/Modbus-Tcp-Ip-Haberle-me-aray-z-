@@ -63,12 +63,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(360, 227);
-            this.ControlBox = false;
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tB_InceptionAdress);
             this.Controls.Add(this.btn_ChangeAdress);
             this.Name = "ChangeAdressForm";
-            this.ShowIcon = false;
             this.Text = "Adres değiştir";
             this.Load += new System.EventHandler(this.ChangeAdressForm_Load);
             this.ResumeLayout(false);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EasyModbus;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -12,7 +13,8 @@ namespace WindowsFormsApp1
         public int Adress { get; set; }
         public bool Value { get; set; }
 
-        Modbus modbus = new Modbus();
+       
+        ModbusClient modbusClient = new ModbusClient();
 
         public CoilControl()
         {
@@ -37,7 +39,7 @@ namespace WindowsFormsApp1
                     this.Text = "1";
                     this.BackColor = Color.DeepSkyBlue;
                     Value = true;
-                    modbus.modbusClient.WriteSingleCoil(Adress, Value);
+                    modbusClient.WriteSingleCoil(Adress, Value);
                 }
                 else if (String.Compare(this.Text, "1") == 0)
                 {
@@ -45,11 +47,9 @@ namespace WindowsFormsApp1
                     this.Text = "0";
                     this.BackColor = Color.DimGray;
                     Value = false;
-                    modbus.modbusClient.WriteSingleCoil(Adress, Value);
+                    modbusClient.WriteSingleCoil(Adress, Value);
                     
                 }
-
-              
             }
             catch(Exception ex)
             {
@@ -62,7 +62,7 @@ namespace WindowsFormsApp1
 
         public void Write(int startingAdress, int quantity)
         {
-            modbus.modbusClient.ReadCoils(startingAdress, quantity);
+            modbusClient.ReadCoils(startingAdress, quantity);
         }
 
     }

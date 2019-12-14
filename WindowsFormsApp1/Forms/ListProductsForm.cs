@@ -1,124 +1,186 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
 using EasyModbus;
 using System.Threading;
 using Timer = System.Timers.Timer;
-using System.Drawing;
+using WindowsFormsApp1.Enums;
+using System.Text;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace WindowsFormsApp1.Forms
 {
     public partial class ListProductsForm : Form
     {
 
-        Timer timer_ListProducts = new Timer();
-        Thread th_ListProducts;
-        Modbus modbus = new Modbus();
+        Timer timer_SytemAccessInfo=new Timer();
+        Timer timer_ProductionStatus = new Timer();
+        ListViewItem lVI_Urun = new ListViewItem();
+        Global global = new Global();
 
         public ListProductsForm()
         {
+           
             InitializeComponent();
             Control.CheckForIllegalCrossThreadCalls = false;
-            timer_ListProducts.Enabled = true;
-            timer_ListProducts.Interval = 2000;
-            timer_ListProducts.Start();
-            timer_ListProducts.Elapsed += timer_ListProducts_Elapsed;
-           
+            timer_SytemAccessInfo.Enabled = true;
+            timer_SytemAccessInfo.Interval = 3*60*100;
+            timer_SytemAccessInfo.Start();
+            timer_SytemAccessInfo.Elapsed += timer_SytemAccessInfo_Elapsed;
+
+            timer_ProductionStatus.Enabled = true;
+            timer_ProductionStatus.Interval = 60000;
+            timer_ProductionStatus.Start();
+            timer_ProductionStatus.Elapsed += timer_ProductionStatus_Elapsed;
         }
 
-        private void timer_ListProducts_Elapsed(object sender, ElapsedEventArgs e)
+        private void timer_ProductionStatus_Elapsed(object sender, ElapsedEventArgs e)
         {
-            th_ListProducts = new Thread(new ThreadStart(UpdateListProducts));
-            th_ListProducts.Start();
+            //ProductionStatus();
+        }
+
+        private void timer_SytemAccessInfo_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            //timer_SytemAccessInfo = new Thread(new ThreadStart(UpdateListProducts));
+            //timer_SytemAccessInfo.Start();
+            //ConnectionControl();
 
         }
 
         private void ListProductsForm_Load(object sender, EventArgs e)
         {
-            ListViewItem lVI_Urun = new ListViewItem();
-            lVI_Urun.Text = "";
+
+            lVI_Urun.Text = "Muzaffer";
             lV_UrunListele.Items.Add(lVI_Urun);
-            try
-            {
-                modbus.modbusClient.Connect();
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-            
+            global.dataExchange.modbus.modbusClient.Connect();
+           
+            if (global.dataExchange.modbus.modbusClient.Connected) DataExchangeProtocol();
+            else MessageBox.Show("Bağlantı yok");
+  
         }
 
         private void btn_Connect_Click(object sender, EventArgs e)
         {
-            try
-            {
-                modbus.modbusClient.Connect();
-
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-            
-           
+            global.dataExchange.modbus.modbusClient.Connect();
+            if (!global.dataExchange.modbus.modbusClient.Connected) MessageBox.Show("bağlantı yapılamadı");
         }
 
-      
 
         private void btn_DisConnect_Click(object sender, EventArgs e)
         {
-            modbus.modbusClient.Disconnect();
-            lb_ConnectionStatus.Text = "Bağlı değil!";
+            global.dataExchange.modbus.modbusClient.Disconnect();
+            if (!global.dataExchange.modbus.modbusClient.Connected) lb_ConnectionStatus.Text = "Bağlı değil!";
         }
 
-        private void btn_ListProducts_Click(object sender, EventArgs e)
+        private void DataExchangeProtocol()
         {
-            
-        }
-
-        private void UpdateListProducts()
-        {
-
-
-            if (modbus.modbusClient.Connected)
+            int[] Values = new int[100];
+            if (Values[0] != (int)AccessSystem.onay)
             {
-                ListViewItem lVI_Urun = new ListViewItem();
-                ListViewItem selectedListItem = new ListViewItem();
-                int[] registerValues = new int[120];
+                lbAccesSystem.Text = "Sisteme erişim yok";
+                global.dataExchange.modbus.modbusClient.WriteSingleRegister((int)RegisterAdress.AccessSystem, (int)AccessSystem.talep); //sistem erişim talebi
+                global.dataExchange.modbus.modbusClient.WriteSingleCoil(135, true);
+                Thread.Sleep(250);
+             
+            }
+            Values = global.dataExchange.modbus.modbusClient.ReadHoldingRegisters((int)RegisterAdress.AccessSystem, 4); //sistem erişim durumu
+            global.dataExchange.modbus.modbusClient.WriteSingleRegister((int)RegisterAdress.DataStatus, 0); //veri talebi
+            global.dataExchange.modbus.modbusClient.WriteSingleCoil(135, true);
+            Thread.Sleep(250);
 
-                string Product, CurrentProduct;
+            if (Values[0]== (int)AccessSystem.onay )
+            {
+                lbAccesSystem.Text="Sisteme erişim sağlandı";
 
-                registerValues = modbus.modbusClient.ReadHoldingRegisters(0, 30);
-                Product = ModbusClient.ConvertRegistersToString(registerValues, 0, 30);
+                int[] reqData  = new int[] { (int)RequestData.talep, (int)commandType.read, (int)RequestDataType.users };
 
-               
+                global.dataExchange.modbus.modbusClient.WriteMultipleRegisters((int)RegisterAdress.RequestData, reqData); //veri talebi
+                global.dataExchange.modbus.modbusClient.WriteSingleCoil(135, true);
+                Thread.Sleep(250);
+                Values = global.dataExchange.modbus.modbusClient.ReadHoldingRegisters((int)RegisterAdress.RequestData, 2); //veri talebi durumu
 
-                CurrentProduct = lV_UrunListele.Items[0].Text;
-                if (String.Compare(Product, CurrentProduct) == 1)
+                if (Values[0] == (int)RequestData.onay)
                 {
-                    lVI_Urun.Text = Product;
-                    lV_UrunListele.Items.RemoveAt(0);
-                    lV_UrunListele.Items.Insert(0, lVI_Urun);
+                    lbRequestData.Text = "Veri talebi onaylandı";
+                    ListUsers();
+                }
+                else if (Values[0] == (int)RequestData.red)
+                {
+                    lbRequestData.Text = "Veri talebi reddedildi!";
+                }
+            }
+            else if (Values[0]==(int)AccessSystem.red)
+            {
+                lbAccesSystem.Text = "Sistem erişim talebi reddedildi!";
+            }
+        }
+
+        private void ListUsers()
+        {
+
+            int[] AccountCount = global.dataExchange.modbus.modbusClient.ReadHoldingRegisters((int)RegisterAdress.DataCount, 1);
+
+            int[] dataStatus = global.dataExchange.modbus.modbusClient.ReadHoldingRegisters((int)RegisterAdress.DataStatus, 1);
+
+            int[] Values= new int[120];
+
+
+            for (int i = 0; i < AccountCount[0]; i++)
+            {
+                int increment = i * 30;
+
+                if (increment % 120 == 0)
+                {
+                    Values = global.dataExchange.modbus.modbusClient.ReadHoldingRegisters((int)RegisterAdress.usersDataOffSet + increment, 120);
+                    increment = 0;
                 }
 
-
+                ListViewItem lvi = new ListViewItem();
+                lvi.Text = ModbusClient.ConvertRegistersToString(Values, increment%120, (int)EUser.nameLenght);
+                lvi.SubItems.Add(ModbusClient.ConvertRegistersToString(Values, 13+ (increment % 120), (int)EUser.barcodPinLength));
+                lvi.SubItems.Add(Values[27+ (increment % 120)].ToString());
+                lvi.SubItems.Add(Values[28+ (increment % 120)].ToString());
+                lvi.SubItems.Add(Values[29+ (increment % 120)].ToString());
+                lV_Users.Items.Add(lvi);
+                
             }
 
-        
+
+            global.dataExchange.modbus.modbusClient.WriteSingleRegister((int)RegisterAdress.DataStatus, 2);
+            global.dataExchange.modbus.modbusClient.WriteSingleCoil(135, true);
+            Thread.Sleep(250);
         }
 
-        private void btn_Write_Click(object sender, EventArgs e)
+        private void SystemCurrentValues()
         {
-           // lV_UrunListele.  //lV_UrunListele.SelectedItems[0];
+            if (global.dataExchange.modbus.modbusClient.Connected)
+            {
+                global.dataExchange.modbus.modbusClient.WriteMultipleRegisters((int)RegisterAdress.AccessSystem, new int[] { (int)AccessSystem.talep, (int)RequestData.talep});
+                global.dataExchange.modbus.modbusClient.WriteSingleCoil(135, true);
+                Thread.Sleep(250);
+                int[] accessSystemInfo = global.dataExchange.modbus.modbusClient.ReadHoldingRegisters((int)RegisterAdress.AccessSystem, 2);
+                lbAccesSystem.Text=ModbusClient.ConvertRegistersToString(accessSystemInfo, 0, 1);//buralar değişecek
+                lbRequestData.Text= ModbusClient.ConvertRegistersToString(accessSystemInfo, 1, 1);
+
+                foreach(int currentData in (RequestCurrentDataType[])Enum.GetValues(typeof(RequestCurrentDataType)))
+                {
+                    global.dataExchange.modbus.modbusClient.WriteSingleRegister((int)RegisterAdress.DataType, currentData);
+                    global.dataExchange.modbus.modbusClient.WriteSingleCoil(135, true);
+                    Thread.Sleep(250);
+                    int[] systemInfo = global.dataExchange.modbus.modbusClient.ReadHoldingRegisters((int)RegisterAdress.DataType, 1);
+                    lbCurrentPage.Text = ModbusClient.ConvertRegistersToString(systemInfo, 0, 30);
+
+                }
+
+            }
         }
 
         private void btn_Connect_Click_1(object sender, EventArgs e)
         {
             try
             {
-                modbus.modbusClient.Connect();
+                global.dataExchange.modbus.modbusClient.Connect();
                
             }
             catch(Exception ex)
@@ -127,5 +189,27 @@ namespace WindowsFormsApp1.Forms
             }
          
         }
+
+        private void btn_Write_Click(object sender, EventArgs e)
+        {
+
+            if (lV_UrunListele.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("lütfen bir seçim yapınız!");
+                return;
+
+            }
+
+            int selectedIndex = lV_UrunListele.Items.IndexOf(lV_UrunListele.SelectedItems[0]);
+            int[] WritingValues = new int[] { selectedIndex, Convert.ToInt32(tB_Quantity.Text) };
+
+            global.dataExchange.modbus.modbusClient.WriteMultipleRegisters(0, WritingValues);
+            global.dataExchange.modbus.modbusClient.WriteSingleCoil(135, true);
+            Thread.Sleep(250);
+            tB_Quantity.Text = string.Empty;
+        }
     }
+
+    
+    
 }

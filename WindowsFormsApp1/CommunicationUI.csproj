@@ -51,12 +51,59 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account.cs" />
+    <Compile Include="Cable.cs" />
+    <Compile Include="ChangeControlsInfo.cs" />
     <Compile Include="CoilControl.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CoilControl.Designer.cs">
       <DependentUpon>CoilControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="CommonControls.cs" />
+    <Compile Include="DataType.cs" />
+    <Compile Include="Enums\DataTypeComStatus.cs" />
+    <Compile Include="Forms\AccountsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AccountsForm.Designer.cs">
+      <DependentUpon>AccountsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddAccountForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddAccountForm.Designer.cs">
+      <DependentUpon>AddAccountForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddProductForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddProductForm.Designer.cs">
+      <DependentUpon>AddProductForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ProductForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ProductForm.Designer.cs">
+      <DependentUpon>ProductForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TwistMainFormCUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TwistMainFormCUI.Designer.cs">
+      <DependentUpon>TwistMainFormCUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Global.cs" />
+    <Compile Include="SystemInfoControls.cs" />
+    <Compile Include="DataExchange.cs" />
+    <Compile Include="Enums\AccessSystem.cs" />
+    <Compile Include="Enums\commandType.cs" />
+    <Compile Include="Enums\DataStatus.cs" />
+    <Compile Include="Enums\RegisterAdress.cs" />
+    <Compile Include="Enums\RequestCurrentDataType.cs" />
+    <Compile Include="Enums\RequestData.cs" />
+    <Compile Include="Enums\RequestDataType.cs" />
+    <Compile Include="Enums\EUser.cs" />
     <Compile Include="Forms\ChangeAdressForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +115,12 @@
     </Compile>
     <Compile Include="Forms\ListProductsForm.Designer.cs">
       <DependentUpon>ListProductsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Products.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Products.Designer.cs">
+      <DependentUpon>Products.cs</DependentUpon>
     </Compile>
     <Compile Include="lb_Adress.cs">
       <SubType>Component</SubType>
@@ -98,8 +151,24 @@
     <Compile Include="Product.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SystemCurrentInfo.cs" />
+    <Compile Include="TypeForm.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TypeForm.resx</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs" />
     <EmbeddedResource Include="Deneme\denemeForm.resx">
       <DependentUpon>denemeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AccountsForm.resx">
+      <DependentUpon>AccountsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddAccountForm.resx">
+      <DependentUpon>AddAccountForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddProductForm.resx">
+      <DependentUpon>AddProductForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ChangeAdressForm.resx">
       <DependentUpon>ChangeAdressForm.cs</DependentUpon>
@@ -113,6 +182,15 @@
     <EmbeddedResource Include="Forms\Plc.resx">
       <DependentUpon>Plc.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ProductForm.resx">
+      <DependentUpon>ProductForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Products.resx">
+      <DependentUpon>Products.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TwistMainFormCUI.resx">
+      <DependentUpon>TwistMainFormCUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -122,7 +200,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="TypeForm.resx" />
+    <EmbeddedResource Include="TypeForm.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TypeForm.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

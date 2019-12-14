@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.779
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Communication User Interface", "WindowsFormsApp1\Communication User Interface.csproj", "{B8A3D0F7-140E-4132-B625-3C3EFD38FE22}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommunicationUI", "WindowsFormsApp1\CommunicationUI.csproj", "{B8A3D0F7-140E-4132-B625-3C3EFD38FE22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Communication", "Modbus\Communication.csproj", "{7E565566-1C8A-48F5-8A3D-A645A3CA9EA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{B8A3D0F7-140E-4132-B625-3C3EFD38FE22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8A3D0F7-140E-4132-B625-3C3EFD38FE22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8A3D0F7-140E-4132-B625-3C3EFD38FE22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E565566-1C8A-48F5-8A3D-A645A3CA9EA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E565566-1C8A-48F5-8A3D-A645A3CA9EA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E565566-1C8A-48F5-8A3D-A645A3CA9EA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E565566-1C8A-48F5-8A3D-A645A3CA9EA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
