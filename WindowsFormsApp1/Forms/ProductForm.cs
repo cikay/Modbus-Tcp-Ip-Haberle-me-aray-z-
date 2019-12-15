@@ -23,5 +23,10 @@ namespace WindowsFormsApp1.Forms
         {
             addProductForm.ShowDialog();
         }
+
+        private void ProductForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

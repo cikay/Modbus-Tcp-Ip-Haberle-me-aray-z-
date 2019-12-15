@@ -8,11 +8,11 @@ namespace WindowsFormsApp1
 {
     public class Cable
     {
-        public object[] Name { get; set; } = new object[2] { 0, string.Empty };
-        public object[] Section { get; set; } = new object[2] { 10, string.Empty };
-        public object[] outerDiameter { get; set; } = new object[2] { 11, string.Empty };
-        public object[] Direction { get; set; } = new object[2] { 12, string.Empty };
-        public object[] color { get; set; } = new object[2] { 13, string.Empty };
+        public Parameters Name { get; set; } = new Parameters() { StartingAdress = "0", Length = "10", ConvertToAsciiString = true };
+        public Parameters Section { get; set; } = new Parameters() { StartingAdress = "10", Length = "1", ConvertToAsciiString = false };
+        public Parameters outerDiameter { get; set; } = new Parameters() { StartingAdress = "11", Length = "1", ConvertToAsciiString = false };
+        public Parameters Direction { get; set; } = new Parameters() { StartingAdress = "12", Length = "1", ConvertToAsciiString = false };
+        public Parameters color { get; set; } = new Parameters() { StartingAdress = "13", Length = "1", ConvertToAsciiString = false };
 
     }
 }

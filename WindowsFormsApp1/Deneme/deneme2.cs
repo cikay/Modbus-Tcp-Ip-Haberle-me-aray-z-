@@ -8,16 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1.Forms
+namespace WindowsFormsApp1.Deneme
 {
-    public partial class Products : Form
+    public partial class deneme2 : Form
     {
-        public Products()
+        public deneme2()
         {
             InitializeComponent();
+            string a = " cikay";
+            label1.Text = a +" muzaffer";
         }
 
-        private void Products_Load(object sender, EventArgs e)
+        private void deneme2_Load(object sender, EventArgs e)
         {
 
         }

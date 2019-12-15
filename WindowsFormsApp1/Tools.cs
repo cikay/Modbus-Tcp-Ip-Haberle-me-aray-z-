@@ -1,24 +1,15 @@
-﻿using EasyModbus;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
-namespace Modbus
+namespace WindowsFormsApp1
 {
-    class Tools
+    public class Tools
     {
-        public static ModbusClient modbusClient = new ModbusClient() { IPAddress = "192.168.2.86", Port = 502 };
-
-        public Tools()
-        {
-
-        }
-        public IEnumerable<Control> GetAllChildControl(Control control, Type type)
+        public static IEnumerable<Control> GetAllChildControl(Control control, Type type)
         {
             var controls = control.Controls.Cast<Control>();
 
@@ -26,6 +17,5 @@ namespace Modbus
                                       .Concat(controls)
                                       .Where(c => c.GetType() == type);
         }
-
     }
 }

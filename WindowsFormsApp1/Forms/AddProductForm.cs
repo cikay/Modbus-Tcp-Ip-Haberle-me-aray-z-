@@ -29,8 +29,8 @@ namespace WindowsFormsApp1.Forms
 
         private void btn_AddProduct_Click(object sender, EventArgs e)
         {
-            object[] property;
-            var allNud = GetAll(this, typeof(NumericUpDown));
+            Parameters parameters;
+            var allNud = Tools.GetAllChildControl(this, typeof(NumericUpDown));
            
             PropertyInfo[] properties = typeof(Product).GetProperties();
 
@@ -41,12 +41,11 @@ namespace WindowsFormsApp1.Forms
                 {
                     if (nud.Name.Contains(prop.Name))
                     {
-                        property = (object[])prop.GetValue(product);
-                        property[1] = nud.Value.ToString();
+                        parameters = (Parameters)prop.GetValue(product);
+                        parameters.Value = nud.Value.ToString();
                         break;
                     }
                 }
-
             }
             DataTypeComStatus protocolAllow = dataExchange.DataExchangeProtocol(infoControls);
             if (protocolAllow == DataTypeComStatus.writeableProducts)
@@ -57,13 +56,6 @@ namespace WindowsFormsApp1.Forms
         }
 
       
-        public IEnumerable<Control> GetAll(Control control, Type type)
-        {
-            var controls = control.Controls.Cast<Control>();
-
-            return controls.SelectMany(ctrl => GetAll(ctrl, type))
-                                      .Concat(controls)
-                                      .Where(c => c.GetType() == type);
-        }
+      
     }
 }

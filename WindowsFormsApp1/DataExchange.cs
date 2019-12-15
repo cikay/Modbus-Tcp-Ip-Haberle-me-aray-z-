@@ -134,16 +134,49 @@ namespace WindowsFormsApp1
             foreach(var prop in Properties)
             {
 
-                object[] ObjectValues=(object[])(prop.GetValue(data));
-
-                byte[] byteArray= Encoding.ASCII.GetBytes(ObjectValues[1].ToString());
+                Parameters parameters = (Parameters)(prop.GetValue(data));
+                int StartingAdress = Convert.ToInt32(parameters.StartingAdress);
+                
+                byte[] byteArray= Encoding.ASCII.GetBytes(parameters.Value);
                 int[] intArray = new int[byteArray.Length];
 
                 for (int i = 0; i < byteArray.Length; i++) intArray[i] =(int)byteArray[i];
 
-                modbus.modbusClient.WriteMultipleRegisters((int)ObjectValues[0],intArray);
+                modbus.modbusClient.WriteMultipleRegisters(StartingAdress, intArray);
 
             }
+        }
+
+        public T ListProduct<T>(T data)
+        {
+            PropertyInfo[] Properties = typeof(T).GetProperties();
+            string stringValue;
+
+
+            foreach (var prop in Properties)
+            {
+
+                Parameters parameters = (Parameters)(prop.GetValue(data));
+                int length = Convert.ToInt32(parameters.Length);
+                int startingAdress = Convert.ToInt32(parameters.StartingAdress);
+
+                int[] registerValues=modbus.modbusClient.ReadHoldingRegisters(5000+startingAdress, length);
+                
+
+                if (parameters.ConvertToAsciiString)
+                {
+                    stringValue = ModbusClient.ConvertRegistersToString(registerValues, 0, length);
+
+                }
+                else
+                {
+                    stringValue = string.Join("", registerValues);
+                }
+
+                parameters.Value = stringValue;
+               
+            }
+            return data;
         }
     }
 }

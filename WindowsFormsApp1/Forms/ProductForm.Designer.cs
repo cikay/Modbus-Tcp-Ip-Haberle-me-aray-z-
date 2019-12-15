@@ -60,6 +60,7 @@
             this.Controls.Add(this.btn_Update);
             this.Name = "ProductForm";
             this.Text = "ProductForm";
+            this.Load += new System.EventHandler(this.ProductForm_Load);
             this.ResumeLayout(false);
 
         }
