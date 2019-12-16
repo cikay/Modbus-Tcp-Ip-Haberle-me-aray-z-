@@ -69,11 +69,11 @@
       <DependentUpon>deneme2.cs</DependentUpon>
     </Compile>
     <Compile Include="Enums\DataTypeComStatus.cs" />
-    <Compile Include="Forms\AccountsForm.cs">
+    <Compile Include="Forms\ListAccountsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AccountsForm.Designer.cs">
-      <DependentUpon>AccountsForm.cs</DependentUpon>
+    <Compile Include="Forms\ListAccountsForm.Designer.cs">
+      <DependentUpon>ListAccountsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\AddAccountForm.cs">
       <SubType>Form</SubType>
@@ -87,17 +87,11 @@
     <Compile Include="Forms\AddProductForm.Designer.cs">
       <DependentUpon>AddProductForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ListProductForm.cs">
+    <Compile Include="Forms\ListProductsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ListProductForm.Designer.cs">
-      <DependentUpon>ListProductForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\ProductForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ProductForm.Designer.cs">
-      <DependentUpon>ProductForm.cs</DependentUpon>
+    <Compile Include="Forms\ListProductsForm.Designer.cs">
+      <DependentUpon>ListProductsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\TwistMainFormCUI.cs">
       <SubType>Form</SubType>
@@ -129,18 +123,6 @@
     <Compile Include="Forms\ChangeAdressForm.Designer.cs">
       <DependentUpon>ChangeAdressForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ListProductsForm%28OnlyForm%29.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ListProductsForm.Designer.cs">
-      <DependentUpon>ListProductsForm%28OnlyForm%29.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Products.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Products.Designer.cs">
-      <DependentUpon>Products.cs</DependentUpon>
-    </Compile>
     <Compile Include="lb_Adress.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -153,12 +135,6 @@
     </Compile>
     <Compile Include="Deneme\denemeForm.Designer.cs">
       <DependentUpon>denemeForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\MainFormCUI.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\MainFormCUI.Designer.cs">
-      <DependentUpon>MainFormCUI.cs</DependentUpon>
     </Compile>
     <Compile Include="Modbus.cs" />
     <Compile Include="Forms\Plc.cs">
@@ -184,8 +160,8 @@
     <EmbeddedResource Include="Deneme\denemeForm.resx">
       <DependentUpon>denemeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AccountsForm.resx">
-      <DependentUpon>AccountsForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ListAccountsForm.resx">
+      <DependentUpon>ListAccountsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddAccountForm.resx">
       <DependentUpon>AddAccountForm.cs</DependentUpon>
@@ -196,23 +172,11 @@
     <EmbeddedResource Include="Forms\ChangeAdressForm.resx">
       <DependentUpon>ChangeAdressForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ListProductForm.resx">
-      <DependentUpon>ListProductForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ListProductsForm.resx">
-      <DependentUpon>ListProductsForm%28OnlyForm%29.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MainFormCUI.resx">
-      <DependentUpon>MainFormCUI.cs</DependentUpon>
+      <DependentUpon>ListProductsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Plc.resx">
       <DependentUpon>Plc.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ProductForm.resx">
-      <DependentUpon>ProductForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Products.resx">
-      <DependentUpon>Products.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TwistMainFormCUI.resx">
       <DependentUpon>TwistMainFormCUI.cs</DependentUpon>

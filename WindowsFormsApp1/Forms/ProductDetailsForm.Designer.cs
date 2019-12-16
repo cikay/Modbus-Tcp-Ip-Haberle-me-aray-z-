@@ -49,7 +49,7 @@
             this.lb_BackAcceleretion = new System.Windows.Forms.Label();
             this.lb_FowardDeceleration = new System.Windows.Forms.Label();
             this.lb_FowardAcceleration = new System.Windows.Forms.Label();
-            this.BackSpeed = new System.Windows.Forms.Label();
+            this.lb_BackSpeed = new System.Windows.Forms.Label();
             this.lb_BackCircuit = new System.Windows.Forms.Label();
             this.lb_FowardSpeed = new System.Windows.Forms.Label();
             this.lb_ForwardCircuit = new System.Windows.Forms.Label();
@@ -207,7 +207,7 @@
             this.gBox_ProductParameters1.Controls.Add(this.lb_BackAcceleretion);
             this.gBox_ProductParameters1.Controls.Add(this.lb_FowardDeceleration);
             this.gBox_ProductParameters1.Controls.Add(this.lb_FowardAcceleration);
-            this.gBox_ProductParameters1.Controls.Add(this.BackSpeed);
+            this.gBox_ProductParameters1.Controls.Add(this.lb_BackSpeed);
             this.gBox_ProductParameters1.Controls.Add(this.lb_BackCircuit);
             this.gBox_ProductParameters1.Controls.Add(this.lb_FowardSpeed);
             this.gBox_ProductParameters1.Controls.Add(this.lb_ForwardCircuit);
@@ -262,14 +262,14 @@
             this.lb_FowardAcceleration.TabIndex = 44;
             this.lb_FowardAcceleration.Text = "-";
             // 
-            // BackSpeed
+            // lb_BackSpeed
             // 
-            this.BackSpeed.AutoSize = true;
-            this.BackSpeed.Location = new System.Drawing.Point(6, 89);
-            this.BackSpeed.Name = "BackSpeed";
-            this.BackSpeed.Size = new System.Drawing.Size(10, 13);
-            this.BackSpeed.TabIndex = 45;
-            this.BackSpeed.Text = "-";
+            this.lb_BackSpeed.AutoSize = true;
+            this.lb_BackSpeed.Location = new System.Drawing.Point(6, 89);
+            this.lb_BackSpeed.Name = "lb_BackSpeed";
+            this.lb_BackSpeed.Size = new System.Drawing.Size(10, 13);
+            this.lb_BackSpeed.TabIndex = 45;
+            this.lb_BackSpeed.Text = "-";
             // 
             // lb_BackCircuit
             // 
@@ -433,7 +433,7 @@
         private System.Windows.Forms.Label lb_BackAcceleretion;
         private System.Windows.Forms.Label lb_FowardDeceleration;
         private System.Windows.Forms.Label lb_FowardAcceleration;
-        private System.Windows.Forms.Label BackSpeed;
+        private System.Windows.Forms.Label lb_BackSpeed;
         private System.Windows.Forms.Label lb_BackCircuit;
         private System.Windows.Forms.Label lb_FowardSpeed;
         private System.Windows.Forms.Label lb_ForwardCircuit;

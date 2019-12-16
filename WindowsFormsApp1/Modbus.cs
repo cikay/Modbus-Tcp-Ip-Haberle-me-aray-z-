@@ -20,7 +20,15 @@ namespace WindowsFormsApp1
 
         public Modbus()
         {
-            modbusClient.Connect();
+            try
+            {
+                modbusClient.Connect();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Bağlantı sağlanamadı!");
+            }
+            
             modbusClient.ConnectedChanged += new ConnectedChangedHandler(UpdateConnectedChanged);
             cmd = new SqlCommand();
 

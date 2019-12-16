@@ -16,24 +16,38 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
 
-            var allChild = Tools.GetAllChildControl(this, typeof(Label));
+            //var allChild = Tools.GetAllChildControl(this, typeof(Label));
             lb_ProductName.Text = productName +" Ürününün Diğer Parametreleri";
-            
-            
+            lb_FowardSpeed.Text = product.FowardSpeed.Value;
+            lb_BackSpeed.Text = product.BackSpeed.Value;
+            lb_FowardAcceleration.Text = product.FowardAcceleration.Value;
+            lb_BackAcceleretion.Text = product.BackAcceleration.Value;
+            lb_FowardDeceleration.Text = product.FowardDeceleration.Value;
+            lb_BackDeceleration.Text = product.BackDeceleration.Value;
+            lb_ForwardCircuit.Text = product.FowardCircuit.Value;
+            lb_BackCircuit.Text = product.BackCircuit.Value;
+            lb_TurArasiBekleme.Text = product.TurArasiBekletme.Value;
+            lb_PitchDimension.Text = product.PitchDimension.Value;
+            lb_SolAcikBoy.Text = product.SolAcikBoy.Value;
+            lb_SagAcikBoy.Text = product.SagAcikBoy.Value;
+            lb_BurulmaSonrasiBoy.Text = product.BurulmaSonrasiBoy1.Value;
+            lb_BurulmaSonrasiBoy2.Text = product.BurulmaSonrasiBoy2.Value;
+            lb_KabloBirakmaSuresi.Text = product.KabloBirakmaSuresi.Value;
 
-            foreach (Control ctrl in allChild)
-            {
-                if ((ctrl is Label))
-                {
-                    foreach(var prop in product)
-                    {
-                        if (ctrl.Name.Contains(prop.Name))
-                        {
-                            ctrl.Text = prop.Value;
-                        }
-                    }
-                }
-            }
+            //foreach (Control ctrl in allChild)
+            //{
+            //    if ((ctrl is Label))
+            //    {
+            //        foreach(var prop in product)
+            //        {
+            //            if (ctrl.Name.Contains(prop.Name))
+            //            {
+            //                ctrl.Text = prop.Value;
+            //            }
+            //        }
+            //    }
+            //}
+
         }
 
         private void ProductDetailsForm_Load(object sender, EventArgs e)

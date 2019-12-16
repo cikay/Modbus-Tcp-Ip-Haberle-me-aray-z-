@@ -30,22 +30,28 @@ namespace WindowsFormsApp1.Forms
             SystemInfoControls s = new SystemInfoControls();
             s.lbAccesSystem = tStripL_AccessSystem;
             s.lbRequestData = tStripL_ReqData;
-
-            global.dataExchange.modbus.modbusClient.Connect();
-
+            
             if (global.dataExchange.modbus.modbusClient.Connected) global.dataExchange.DataExchangeProtocol(s);
-            else MessageBox.Show("Bağlantı yok");
+            
         }
 
         private void tStripBtn_Connect_Click(object sender, EventArgs e)
         {
-            global.dataExchange.modbus.modbusClient.Connect();//try bloğuna alınacak
-            if (!global.dataExchange.modbus.modbusClient.Connected) MessageBox.Show("bağlantı yapılamadı");
+            try
+            {
+                global.dataExchange.modbus.modbusClient.Connect();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Bağlantı sağlanamadı!");
+            }
+            
+            
         }
         private void tStripBtn_DisConnect_Click(object sender, EventArgs e)
         {
             global.dataExchange.modbus.modbusClient.Disconnect();
-            if (!global.dataExchange.modbus.modbusClient.Connected) ; /*lb_ConnectionStatus.Text = "Bağlı değil!";*/
+           
         }
      
 
@@ -56,15 +62,15 @@ namespace WindowsFormsApp1.Forms
 
         private void tStripBtn_Products_Click(object sender, EventArgs e)
         {
-
+            ShowForm<ListProductsForm>();
         }
         private void tStripBtn_Cables_Click(object sender, EventArgs e)
         {
-
+            //ShowForm<ListCableForm>();
         }
         private void tStripBtn_Accounts_Click(object sender, EventArgs e)
         {
-            ShowForm<AccountsForm>();
+            ShowForm<ListAccountsForm>();
         }
         private void ShowForm<TSourse>() where TSourse : Form
         {

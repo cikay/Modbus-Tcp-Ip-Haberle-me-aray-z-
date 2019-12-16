@@ -10,12 +10,12 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1.Forms
 {
-    public partial class AccountsForm : Form
+    public partial class ListAccountsForm : Form
     {
         SystemInfoControls systemInfo = new SystemInfoControls();
         Global global = new Global();
-        AddAccountForm addAccountForm = new AddAccountForm();
-        public AccountsForm()
+       
+        public ListAccountsForm()
         {
             InitializeComponent();
           
@@ -39,6 +39,7 @@ namespace WindowsFormsApp1.Forms
 
         private void btn_AddAccount_Click(object sender, EventArgs e)
         {
+            AddAccountForm addAccountForm = new AddAccountForm();
             addAccountForm.ShowDialog();
         }
     }

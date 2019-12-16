@@ -28,65 +28,71 @@ namespace WindowsFormsApp1
                 Thread.Sleep(250);
 
             }
-            Values = modbus.modbusClient.ReadHoldingRegisters((int)RegisterAdress.AccessSystem, 4); //sistem erişim durumu
-            modbus.modbusClient.WriteSingleRegister((int)RegisterAdress.DataStatus, 0); //veri talebi
-            modbus.modbusClient.WriteSingleCoil(135, true);
-            Thread.Sleep(250);
-
-            if (Values[0] == (int)AccessSystem.onay)
+            try
             {
-                controls.lbAccesSystem.Text = "Sisteme erişim sağlandı";
+                if (Values[0] == (int)AccessSystem.onay)
+                {
+                    controls.lbAccesSystem.Text = "Sisteme erişim sağlandı";
 
-                int[] reqData = new int[] { (int)RequestData.talep, (int)controls.requestDataType, (int)controls.comType };
+                    int[] reqData = new int[] { (int)RequestData.talep, (int)controls.requestDataType, (int)controls.comType };
 
-                modbus.modbusClient.WriteMultipleRegisters((int)RegisterAdress.RequestData, reqData); //veri talebi
+                    modbus.modbusClient.WriteMultipleRegisters((int)RegisterAdress.RequestData, reqData); //veri talebi
+                    modbus.modbusClient.WriteSingleCoil(135, true);
+                    Thread.Sleep(250);
+                    Values = modbus.modbusClient.ReadHoldingRegisters((int)RegisterAdress.RequestData, 3); //veri talebi durumu
+
+                    if (Values[0] == (int)RequestData.onay)
+                    {
+                        if (controls.comType == commandType.read)
+                        {
+                            if (controls.requestDataType == RequestDataType.users)
+                            {
+                                return (int)DataTypeComStatus.readableAccounts;
+                            }
+                            else if (controls.requestDataType == RequestDataType.products)
+                            {
+                                return DataTypeComStatus.readableProducts;
+                            }
+                            else if (controls.requestDataType == RequestDataType.cables)
+                            {
+                                return DataTypeComStatus.readableCables;
+                            }
+                        }
+                        else if (controls.comType == commandType.write)
+                        {
+                            if (controls.requestDataType == RequestDataType.users)
+                            {
+                                return DataTypeComStatus.writeableAccounts;
+                            }
+                            else if (controls.requestDataType == RequestDataType.products)
+                            {
+                                return DataTypeComStatus.writeableProducts;
+                            }
+                            else if (controls.requestDataType == RequestDataType.cables)
+                            {
+                                return DataTypeComStatus.writeableCables;
+                            }
+                        }
+                        controls.lbRequestData.Text = "Veri talebi onaylandı";
+
+                    }
+                    else if (Values[0] == (int)RequestData.red)
+                    {
+                        controls.lbRequestData.Text = "Veri talebi reddedildi!";
+                    }
+                }
+                else if (Values[0] == (int)AccessSystem.red)
+                {
+                    controls.lbAccesSystem.Text = "Sistem erişim talebi reddedildi!";
+                }
+                Values = modbus.modbusClient.ReadHoldingRegisters((int)RegisterAdress.AccessSystem, 4); //sistem erişim durumu
+                modbus.modbusClient.WriteSingleRegister((int)RegisterAdress.DataStatus, 0); //veri talebi
                 modbus.modbusClient.WriteSingleCoil(135, true);
                 Thread.Sleep(250);
-                Values = modbus.modbusClient.ReadHoldingRegisters((int)RegisterAdress.RequestData, 3); //veri talebi durumu
-
-                if (Values[0] == (int)RequestData.onay)
-                {
-                    if(controls.comType == commandType.read)
-                    {
-                        if(controls.requestDataType == RequestDataType.users)
-                        {
-                            return (int)DataTypeComStatus.readableAccounts;
-                        }
-                        else if (controls.requestDataType == RequestDataType.products)
-                        {
-                            return DataTypeComStatus.readableProducts;
-                        }
-                        else if (controls.requestDataType == RequestDataType.cables)
-                        {
-                            return DataTypeComStatus.readableCables;
-                        }
-                    }
-                    else if (controls.comType == commandType.write)
-                    {
-                        if (controls.requestDataType == RequestDataType.users)
-                        {
-                            return DataTypeComStatus.writeableAccounts;
-                        }
-                        else if (controls.requestDataType == RequestDataType.products)
-                        {
-                            return DataTypeComStatus.writeableProducts;
-                        }
-                        else if (controls.requestDataType == RequestDataType.cables)
-                        {
-                            return DataTypeComStatus.writeableCables;
-                        }
-                    }
-                    controls.lbRequestData.Text = "Veri talebi onaylandı";
-                    
-                }
-                else if (Values[0] == (int)RequestData.red)
-                {
-                    controls.lbRequestData.Text = "Veri talebi reddedildi!";
-                }
             }
-            else if (Values[0] == (int)AccessSystem.red)
+            catch (Exception)
             {
-                controls.lbAccesSystem.Text = "Sistem erişim talebi reddedildi!";
+                MessageBox.Show("Haberleşme yapılamıyor!");
             }
 
             return DataTypeComStatus.Non;
@@ -147,36 +153,67 @@ namespace WindowsFormsApp1
             }
         }
 
-        public T ListProduct<T>(T data)
+        public Dictionary<int, T> ListProduct<T>()
         {
+            T data=Activator.CreateInstance<T>();
+            Dictionary<int, T> DataCollection = new Dictionary<int, T>();
+            int[] AccountCount = modbus.modbusClient.ReadHoldingRegisters((int)RegisterAdress.DataCount, 1);
             PropertyInfo[] Properties = typeof(T).GetProperties();
             string stringValue;
 
-
-            foreach (var prop in Properties)
+            for (int i = 0; i < AccountCount[0]; i++)
             {
-
-                Parameters parameters = (Parameters)(prop.GetValue(data));
-                int length = Convert.ToInt32(parameters.Length);
-                int startingAdress = Convert.ToInt32(parameters.StartingAdress);
-
-                int[] registerValues=modbus.modbusClient.ReadHoldingRegisters(5000+startingAdress, length);
-                
-
-                if (parameters.ConvertToAsciiString)
+                foreach (var prop in Properties)
                 {
-                    stringValue = ModbusClient.ConvertRegistersToString(registerValues, 0, length);
+
+                    Parameters parameters = (Parameters)(prop.GetValue(data));
+                    int length = Convert.ToInt32(parameters.Length);
+                    int startingAdress = Convert.ToInt32(parameters.StartingAdress);
+
+                    int[] registerValues = modbus.modbusClient.ReadHoldingRegisters(5000 + startingAdress, length);
+
+
+                    if (parameters.ConvertToAsciiString)
+                    {
+                        stringValue = ModbusClient.ConvertRegistersToString(registerValues, 0, length);
+
+                    }
+                    else
+                    {
+                        stringValue = string.Join("", registerValues);
+                    }
+
+                    parameters.Value = stringValue;
+                    
 
                 }
-                else
-                {
-                    stringValue = string.Join("", registerValues);
-                }
-
-                parameters.Value = stringValue;
-               
+                DataCollection.Add(i, data);
             }
-            return data;
+            //foreach (var prop in Properties)
+            //{
+
+            //    Parameters parameters = (Parameters)(prop.GetValue(data));
+            //    int length = Convert.ToInt32(parameters.Length);
+            //    int startingAdress = Convert.ToInt32(parameters.StartingAdress);
+
+            //    int[] registerValues = modbus.modbusClient.ReadHoldingRegisters(5000 + startingAdress, length);
+
+
+            //    if (parameters.ConvertToAsciiString)
+            //    {
+            //        stringValue = ModbusClient.ConvertRegistersToString(registerValues, 0, length);
+
+            //    }
+            //    else
+            //    {
+            //        stringValue = string.Join("", registerValues);
+            //    }
+
+            //    parameters.Value = stringValue;
+
+            //}
+
+            return DataCollection;
         }
     }
 }
