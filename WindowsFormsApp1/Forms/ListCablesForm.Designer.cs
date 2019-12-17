@@ -35,6 +35,7 @@
             this.Direction = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Color = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btn_Update = new System.Windows.Forms.Button();
+            this.btn_AddCable = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lV_Cables
@@ -92,12 +93,23 @@
             this.btn_Update.UseVisualStyleBackColor = true;
             this.btn_Update.Click += new System.EventHandler(this.btn_Update_Click);
             // 
+            // btn_AddCable
+            // 
+            this.btn_AddCable.Location = new System.Drawing.Point(702, 30);
+            this.btn_AddCable.Name = "btn_AddCable";
+            this.btn_AddCable.Size = new System.Drawing.Size(75, 32);
+            this.btn_AddCable.TabIndex = 2;
+            this.btn_AddCable.Text = "Kablo Ekle";
+            this.btn_AddCable.UseVisualStyleBackColor = true;
+            this.btn_AddCable.Click += new System.EventHandler(this.btn_AddCable_Click);
+            // 
             // ListCablesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(832, 561);
             this.ControlBox = false;
+            this.Controls.Add(this.btn_AddCable);
             this.Controls.Add(this.btn_Update);
             this.Controls.Add(this.lV_Cables);
             //this.Name = "ListCablesForm";
@@ -116,5 +128,6 @@
         private System.Windows.Forms.ColumnHeader Direction;
         private System.Windows.Forms.ColumnHeader Color;
         private System.Windows.Forms.Button btn_Update;
+        private System.Windows.Forms.Button btn_AddCable;
     }
 }

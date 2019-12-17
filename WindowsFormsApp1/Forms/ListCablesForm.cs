@@ -59,5 +59,11 @@ namespace WindowsFormsApp1.Forms
                 lV_Cables.Items.Add(lvi);
             }
         }
+
+        private void btn_AddCable_Click(object sender, EventArgs e)
+        {
+            AddCableForm addCable = new AddCableForm();
+            addCable.ShowDialog();
+        }
     }
 }
