@@ -47,10 +47,12 @@ namespace WindowsFormsApp1.Forms
                     }
                 }
             }
+            infoControls.comType = commandType.write;
+            infoControls.requestDataType = RequestDataType.products;
             DataTypeComStatus protocolAllow = dataExchange.DataExchangeProtocol(infoControls);
             if (protocolAllow == DataTypeComStatus.writeableProducts)
             {
-                dataExchange.Add<Product>(product);
+                dataExchange.SendData<Product>(product);
             }
 
         }

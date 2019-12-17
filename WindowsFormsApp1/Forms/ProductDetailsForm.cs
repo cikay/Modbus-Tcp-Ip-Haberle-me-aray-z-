@@ -16,7 +16,6 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
 
-            //var allChild = Tools.GetAllChildControl(this, typeof(Label));
             lb_ProductName.Text = productName +" Ürününün Diğer Parametreleri";
             lb_FowardSpeed.Text = product.FowardSpeed.Value;
             lb_BackSpeed.Text = product.BackSpeed.Value;
@@ -33,20 +32,6 @@ namespace WindowsFormsApp1
             lb_BurulmaSonrasiBoy.Text = product.BurulmaSonrasiBoy1.Value;
             lb_BurulmaSonrasiBoy2.Text = product.BurulmaSonrasiBoy2.Value;
             lb_KabloBirakmaSuresi.Text = product.KabloBirakmaSuresi.Value;
-
-            //foreach (Control ctrl in allChild)
-            //{
-            //    if ((ctrl is Label))
-            //    {
-            //        foreach(var prop in product)
-            //        {
-            //            if (ctrl.Name.Contains(prop.Name))
-            //            {
-            //                ctrl.Text = prop.Value;
-            //            }
-            //        }
-            //    }
-            //}
 
         }
 

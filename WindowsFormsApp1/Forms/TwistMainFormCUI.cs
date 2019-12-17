@@ -66,7 +66,7 @@ namespace WindowsFormsApp1.Forms
         }
         private void tStripBtn_Cables_Click(object sender, EventArgs e)
         {
-            //ShowForm<ListCableForm>();
+            ShowForm<ListCablesForm>();
         }
         private void tStripBtn_Accounts_Click(object sender, EventArgs e)
         {

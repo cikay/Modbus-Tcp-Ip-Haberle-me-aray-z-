@@ -7,34 +7,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.Enums;
 
 namespace WindowsFormsApp1.Forms
 {
     public partial class ListAccountsForm : Form
     {
-        SystemInfoControls systemInfo = new SystemInfoControls();
+        SystemInfoControls infoControls = new SystemInfoControls();
         Global global = new Global();
+        Dictionary<int, Account> dataCollection;
        
         public ListAccountsForm()
         {
             InitializeComponent();
-          
-            systemInfo.lV_Users = lV_Users;
+
+            infoControls.lV_Users = lV_Users;
         }
       
        
 
         private void AccountsForm_Load(object sender, EventArgs e)
         {
-           
-            global.dataExchange.DataExchangeProtocol(systemInfo);
-            
+            ListAccounts();
         }
 
         private void btn_Update_Click(object sender, EventArgs e)
         {
-
-            global.dataExchange.ListUsers(ref systemInfo);
+            ListAccounts();
         }
 
         private void btn_AddAccount_Click(object sender, EventArgs e)
@@ -42,5 +41,38 @@ namespace WindowsFormsApp1.Forms
             AddAccountForm addAccountForm = new AddAccountForm();
             addAccountForm.ShowDialog();
         }
+
+
+        private void ListAccounts()
+        {
+            infoControls.comType = commandType.read;
+            infoControls.requestDataType = RequestDataType.products;
+            DataTypeComStatus protocolAllow = global.dataExchange.DataExchangeProtocol(infoControls);
+
+            if (protocolAllow == DataTypeComStatus.readableAccounts)
+            {
+                dataCollection = global.dataExchange.GetData<Account>();
+                if(dataCollection!=null) List(dataCollection);
+
+            }
+        }
+
+        public void List(Dictionary<int, Account> dataCollection)
+        {
+            foreach (KeyValuePair<int, Account> keyValuePair in dataCollection)
+            {
+                Account account = keyValuePair.Value;
+
+                string[] row = { };
+                int i = 0;
+                foreach (Parameters parameters in account)
+                {
+                    row[i++] = parameters.Value;
+                }
+                ListViewItem lvi = new ListViewItem(row);
+                lV_Users.Items.Add(lvi);
+            }
+        }
+
     }
 }

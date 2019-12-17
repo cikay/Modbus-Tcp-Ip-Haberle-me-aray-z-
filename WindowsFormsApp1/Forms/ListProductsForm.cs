@@ -27,7 +27,7 @@ namespace WindowsFormsApp1.Forms
 
             if (allowProtocol==DataTypeComStatus.readableProducts)
             {
-                dataCollection = dataExchange.ListProduct<Product>();
+                dataCollection = dataExchange.GetData<Product>();
                 foreach (KeyValuePair<int, Product> KeyValuePairProduct in dataCollection)
                 {
                     productData = KeyValuePairProduct.Value;

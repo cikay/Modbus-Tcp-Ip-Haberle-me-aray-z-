@@ -133,7 +133,7 @@ namespace WindowsFormsApp1
             Thread.Sleep(250);
         }
 
-        public void Add<T>(T data) 
+        public void SendData<T>(T data) 
         {
             PropertyInfo[] Properties = typeof(T).GetProperties();
 
@@ -153,7 +153,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        public Dictionary<int, T> ListProduct<T>()
+        public Dictionary<int, T> GetData<T>()
         {
             T data=Activator.CreateInstance<T>();
             Dictionary<int, T> DataCollection = new Dictionary<int, T>();
@@ -189,30 +189,7 @@ namespace WindowsFormsApp1
                 }
                 DataCollection.Add(i, data);
             }
-            //foreach (var prop in Properties)
-            //{
-
-            //    Parameters parameters = (Parameters)(prop.GetValue(data));
-            //    int length = Convert.ToInt32(parameters.Length);
-            //    int startingAdress = Convert.ToInt32(parameters.StartingAdress);
-
-            //    int[] registerValues = modbus.modbusClient.ReadHoldingRegisters(5000 + startingAdress, length);
-
-
-            //    if (parameters.ConvertToAsciiString)
-            //    {
-            //        stringValue = ModbusClient.ConvertRegistersToString(registerValues, 0, length);
-
-            //    }
-            //    else
-            //    {
-            //        stringValue = string.Join("", registerValues);
-            //    }
-
-            //    parameters.Value = stringValue;
-
-            //}
-
+            
             return DataCollection;
         }
     }
