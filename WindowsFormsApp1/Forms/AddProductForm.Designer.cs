@@ -29,18 +29,20 @@
         private void InitializeComponent()
         {
             this.gBox_ProductParameters1 = new System.Windows.Forms.GroupBox();
+            this.nud_KabloBirakmaSuresi = new System.Windows.Forms.NumericUpDown();
+            this.nud_TurArasiBekleme = new System.Windows.Forms.NumericUpDown();
+            this.nud_BackDeceleration = new System.Windows.Forms.NumericUpDown();
+            this.nud_BackAcceleration = new System.Windows.Forms.NumericUpDown();
+            this.nud_FowardDeceleration = new System.Windows.Forms.NumericUpDown();
+            this.nud_FowardAcceleration = new System.Windows.Forms.NumericUpDown();
+            this.nud_BackSpeed = new System.Windows.Forms.NumericUpDown();
+            this.nud_BackCircuit = new System.Windows.Forms.NumericUpDown();
+            this.FowardSpeed = new System.Windows.Forms.NumericUpDown();
+            this.nud_Cabel1Color = new System.Windows.Forms.NumericUpDown();
+            this.nud_FowardCircuit = new System.Windows.Forms.NumericUpDown();
+            this.nud_CableDirection = new System.Windows.Forms.NumericUpDown();
             this.txt_ProductName = new System.Windows.Forms.TextBox();
             this.txt_LabelName = new System.Windows.Forms.TextBox();
-            this.nud_FowardCircuit = new System.Windows.Forms.NumericUpDown();
-            this.FowardSpeed = new System.Windows.Forms.NumericUpDown();
-            this.nud_BackCircuit = new System.Windows.Forms.NumericUpDown();
-            this.nud_BackSpeed = new System.Windows.Forms.NumericUpDown();
-            this.nud_FowardAcceleration = new System.Windows.Forms.NumericUpDown();
-            this.nud_FowardDeceleration = new System.Windows.Forms.NumericUpDown();
-            this.nud_BackAcceleration = new System.Windows.Forms.NumericUpDown();
-            this.nud_BackDeceleration = new System.Windows.Forms.NumericUpDown();
-            this.nud_TurArasiBekleme = new System.Windows.Forms.NumericUpDown();
-            this.nud_KabloBirakmaSuresi = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -65,6 +67,7 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.gBox_ProductParameters2 = new System.Windows.Forms.GroupBox();
+            this.nud_PitchDimension = new System.Windows.Forms.NumericUpDown();
             this.nud_SolAcikBoy = new System.Windows.Forms.NumericUpDown();
             this.nud_SagAcikBoy = new System.Windows.Forms.NumericUpDown();
             this.nud_BurulmaSonrasiBoy2 = new System.Windows.Forms.NumericUpDown();
@@ -73,22 +76,22 @@
             this.nud_CableSection = new System.Windows.Forms.NumericUpDown();
             this.nud_CableDiameter = new System.Windows.Forms.NumericUpDown();
             this.nud_Cable2Color = new System.Windows.Forms.NumericUpDown();
-            this.nud_Cabel1Color = new System.Windows.Forms.NumericUpDown();
-            this.nud_CableDirection = new System.Windows.Forms.NumericUpDown();
-            this.nud_PitchDimension = new System.Windows.Forms.NumericUpDown();
             this.btn_AddProduct = new System.Windows.Forms.Button();
             this.gBox_ProductParameters1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_FowardCircuit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FowardSpeed)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_BackCircuit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_BackSpeed)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_FowardAcceleration)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_FowardDeceleration)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_BackAcceleration)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_BackDeceleration)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_TurArasiBekleme)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_KabloBirakmaSuresi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_TurArasiBekleme)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_BackDeceleration)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_BackAcceleration)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_FowardDeceleration)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_FowardAcceleration)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_BackSpeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_BackCircuit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FowardSpeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_Cabel1Color)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_FowardCircuit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_CableDirection)).BeginInit();
             this.gBox_ProductParameters2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_PitchDimension)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_SolAcikBoy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_SagAcikBoy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_BurulmaSonrasiBoy2)).BeginInit();
@@ -97,9 +100,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nud_CableSection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_CableDiameter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_Cable2Color)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_Cabel1Color)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_CableDirection)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_PitchDimension)).BeginInit();
             this.SuspendLayout();
             // 
             // gBox_ProductParameters1
@@ -122,6 +122,90 @@
             this.gBox_ProductParameters1.TabIndex = 1;
             this.gBox_ProductParameters1.TabStop = false;
             // 
+            // nud_KabloBirakmaSuresi
+            // 
+            this.nud_KabloBirakmaSuresi.Location = new System.Drawing.Point(6, 251);
+            this.nud_KabloBirakmaSuresi.Name = "nud_KabloBirakmaSuresi";
+            this.nud_KabloBirakmaSuresi.Size = new System.Drawing.Size(100, 20);
+            this.nud_KabloBirakmaSuresi.TabIndex = 1;
+            // 
+            // nud_TurArasiBekleme
+            // 
+            this.nud_TurArasiBekleme.Location = new System.Drawing.Point(6, 228);
+            this.nud_TurArasiBekleme.Name = "nud_TurArasiBekleme";
+            this.nud_TurArasiBekleme.Size = new System.Drawing.Size(100, 20);
+            this.nud_TurArasiBekleme.TabIndex = 1;
+            // 
+            // nud_BackDeceleration
+            // 
+            this.nud_BackDeceleration.Location = new System.Drawing.Point(5, 202);
+            this.nud_BackDeceleration.Name = "nud_BackDeceleration";
+            this.nud_BackDeceleration.Size = new System.Drawing.Size(100, 20);
+            this.nud_BackDeceleration.TabIndex = 1;
+            // 
+            // nud_BackAcceleration
+            // 
+            this.nud_BackAcceleration.Location = new System.Drawing.Point(4, 171);
+            this.nud_BackAcceleration.Name = "nud_BackAcceleration";
+            this.nud_BackAcceleration.Size = new System.Drawing.Size(100, 20);
+            this.nud_BackAcceleration.TabIndex = 1;
+            // 
+            // nud_FowardDeceleration
+            // 
+            this.nud_FowardDeceleration.Location = new System.Drawing.Point(5, 145);
+            this.nud_FowardDeceleration.Name = "nud_FowardDeceleration";
+            this.nud_FowardDeceleration.Size = new System.Drawing.Size(100, 20);
+            this.nud_FowardDeceleration.TabIndex = 1;
+            // 
+            // nud_FowardAcceleration
+            // 
+            this.nud_FowardAcceleration.Location = new System.Drawing.Point(4, 119);
+            this.nud_FowardAcceleration.Name = "nud_FowardAcceleration";
+            this.nud_FowardAcceleration.Size = new System.Drawing.Size(100, 20);
+            this.nud_FowardAcceleration.TabIndex = 1;
+            // 
+            // nud_BackSpeed
+            // 
+            this.nud_BackSpeed.Location = new System.Drawing.Point(4, 93);
+            this.nud_BackSpeed.Name = "nud_BackSpeed";
+            this.nud_BackSpeed.Size = new System.Drawing.Size(101, 20);
+            this.nud_BackSpeed.TabIndex = 1;
+            // 
+            // nud_BackCircuit
+            // 
+            this.nud_BackCircuit.Location = new System.Drawing.Point(4, 67);
+            this.nud_BackCircuit.Name = "nud_BackCircuit";
+            this.nud_BackCircuit.Size = new System.Drawing.Size(101, 20);
+            this.nud_BackCircuit.TabIndex = 1;
+            // 
+            // FowardSpeed
+            // 
+            this.FowardSpeed.Location = new System.Drawing.Point(4, 43);
+            this.FowardSpeed.Name = "FowardSpeed";
+            this.FowardSpeed.Size = new System.Drawing.Size(101, 20);
+            this.FowardSpeed.TabIndex = 1;
+            // 
+            // nud_Cabel1Color
+            // 
+            this.nud_Cabel1Color.Location = new System.Drawing.Point(6, 304);
+            this.nud_Cabel1Color.Name = "nud_Cabel1Color";
+            this.nud_Cabel1Color.Size = new System.Drawing.Size(101, 20);
+            this.nud_Cabel1Color.TabIndex = 1;
+            // 
+            // nud_FowardCircuit
+            // 
+            this.nud_FowardCircuit.Location = new System.Drawing.Point(4, 15);
+            this.nud_FowardCircuit.Name = "nud_FowardCircuit";
+            this.nud_FowardCircuit.Size = new System.Drawing.Size(100, 20);
+            this.nud_FowardCircuit.TabIndex = 1;
+            // 
+            // nud_CableDirection
+            // 
+            this.nud_CableDirection.Location = new System.Drawing.Point(6, 277);
+            this.nud_CableDirection.Name = "nud_CableDirection";
+            this.nud_CableDirection.Size = new System.Drawing.Size(100, 20);
+            this.nud_CableDirection.TabIndex = 1;
+            // 
             // txt_ProductName
             // 
             this.txt_ProductName.Location = new System.Drawing.Point(142, 12);
@@ -135,76 +219,6 @@
             this.txt_LabelName.Name = "txt_LabelName";
             this.txt_LabelName.Size = new System.Drawing.Size(100, 20);
             this.txt_LabelName.TabIndex = 0;
-            // 
-            // nud_FowardCircuit
-            // 
-            this.nud_FowardCircuit.Location = new System.Drawing.Point(4, 15);
-            this.nud_FowardCircuit.Name = "nud_FowardCircuit";
-            this.nud_FowardCircuit.Size = new System.Drawing.Size(100, 20);
-            this.nud_FowardCircuit.TabIndex = 1;
-            // 
-            // FowardSpeed
-            // 
-            this.FowardSpeed.Location = new System.Drawing.Point(4, 43);
-            this.FowardSpeed.Name = "FowardSpeed";
-            this.FowardSpeed.Size = new System.Drawing.Size(101, 20);
-            this.FowardSpeed.TabIndex = 1;
-            // 
-            // nud_BackCircuit
-            // 
-            this.nud_BackCircuit.Location = new System.Drawing.Point(4, 67);
-            this.nud_BackCircuit.Name = "nud_BackCircuit";
-            this.nud_BackCircuit.Size = new System.Drawing.Size(101, 20);
-            this.nud_BackCircuit.TabIndex = 1;
-            // 
-            // nud_BackSpeed
-            // 
-            this.nud_BackSpeed.Location = new System.Drawing.Point(4, 93);
-            this.nud_BackSpeed.Name = "nud_BackSpeed";
-            this.nud_BackSpeed.Size = new System.Drawing.Size(101, 20);
-            this.nud_BackSpeed.TabIndex = 1;
-            // 
-            // nud_FowardAcceleration
-            // 
-            this.nud_FowardAcceleration.Location = new System.Drawing.Point(4, 119);
-            this.nud_FowardAcceleration.Name = "nud_FowardAcceleration";
-            this.nud_FowardAcceleration.Size = new System.Drawing.Size(100, 20);
-            this.nud_FowardAcceleration.TabIndex = 1;
-            // 
-            // nud_FowardDeceleration
-            // 
-            this.nud_FowardDeceleration.Location = new System.Drawing.Point(5, 145);
-            this.nud_FowardDeceleration.Name = "nud_FowardDeceleration";
-            this.nud_FowardDeceleration.Size = new System.Drawing.Size(100, 20);
-            this.nud_FowardDeceleration.TabIndex = 1;
-            // 
-            // nud_BackAcceleration
-            // 
-            this.nud_BackAcceleration.Location = new System.Drawing.Point(4, 171);
-            this.nud_BackAcceleration.Name = "nud_BackAcceleration";
-            this.nud_BackAcceleration.Size = new System.Drawing.Size(100, 20);
-            this.nud_BackAcceleration.TabIndex = 1;
-            // 
-            // nud_BackDeceleration
-            // 
-            this.nud_BackDeceleration.Location = new System.Drawing.Point(5, 202);
-            this.nud_BackDeceleration.Name = "nud_BackDeceleration";
-            this.nud_BackDeceleration.Size = new System.Drawing.Size(100, 20);
-            this.nud_BackDeceleration.TabIndex = 1;
-            // 
-            // nud_TurArasiBekleme
-            // 
-            this.nud_TurArasiBekleme.Location = new System.Drawing.Point(6, 228);
-            this.nud_TurArasiBekleme.Name = "nud_TurArasiBekleme";
-            this.nud_TurArasiBekleme.Size = new System.Drawing.Size(100, 20);
-            this.nud_TurArasiBekleme.TabIndex = 1;
-            // 
-            // nud_KabloBirakmaSuresi
-            // 
-            this.nud_KabloBirakmaSuresi.Location = new System.Drawing.Point(6, 251);
-            this.nud_KabloBirakmaSuresi.Name = "nud_KabloBirakmaSuresi";
-            this.nud_KabloBirakmaSuresi.Size = new System.Drawing.Size(100, 20);
-            this.nud_KabloBirakmaSuresi.TabIndex = 1;
             // 
             // label1
             // 
@@ -430,6 +444,13 @@
             this.gBox_ProductParameters2.TabIndex = 3;
             this.gBox_ProductParameters2.TabStop = false;
             // 
+            // nud_PitchDimension
+            // 
+            this.nud_PitchDimension.Location = new System.Drawing.Point(6, 234);
+            this.nud_PitchDimension.Name = "nud_PitchDimension";
+            this.nud_PitchDimension.Size = new System.Drawing.Size(100, 20);
+            this.nud_PitchDimension.TabIndex = 1;
+            // 
             // nud_SolAcikBoy
             // 
             this.nud_SolAcikBoy.Location = new System.Drawing.Point(6, 202);
@@ -486,27 +507,6 @@
             this.nud_Cable2Color.Size = new System.Drawing.Size(101, 20);
             this.nud_Cable2Color.TabIndex = 1;
             // 
-            // nud_Cabel1Color
-            // 
-            this.nud_Cabel1Color.Location = new System.Drawing.Point(6, 304);
-            this.nud_Cabel1Color.Name = "nud_Cabel1Color";
-            this.nud_Cabel1Color.Size = new System.Drawing.Size(101, 20);
-            this.nud_Cabel1Color.TabIndex = 1;
-            // 
-            // nud_CableDirection
-            // 
-            this.nud_CableDirection.Location = new System.Drawing.Point(6, 277);
-            this.nud_CableDirection.Name = "nud_CableDirection";
-            this.nud_CableDirection.Size = new System.Drawing.Size(100, 20);
-            this.nud_CableDirection.TabIndex = 1;
-            // 
-            // nud_PitchDimension
-            // 
-            this.nud_PitchDimension.Location = new System.Drawing.Point(6, 234);
-            this.nud_PitchDimension.Name = "nud_PitchDimension";
-            this.nud_PitchDimension.Size = new System.Drawing.Size(100, 20);
-            this.nud_PitchDimension.TabIndex = 1;
-            // 
             // btn_AddProduct
             // 
             this.btn_AddProduct.Location = new System.Drawing.Point(436, 301);
@@ -551,20 +551,23 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.gBox_ProductParameters1);
             this.Name = "AddProductForm";
-            this.Text = "AddProductForm";
+            this.ShowIcon = false;
             this.Load += new System.EventHandler(this.AddProductForm_Load);
             this.gBox_ProductParameters1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.nud_FowardCircuit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FowardSpeed)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_BackCircuit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_BackSpeed)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_FowardAcceleration)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_FowardDeceleration)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_BackAcceleration)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_BackDeceleration)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_TurArasiBekleme)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_KabloBirakmaSuresi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_TurArasiBekleme)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_BackDeceleration)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_BackAcceleration)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_FowardDeceleration)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_FowardAcceleration)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_BackSpeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_BackCircuit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FowardSpeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_Cabel1Color)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_FowardCircuit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_CableDirection)).EndInit();
             this.gBox_ProductParameters2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nud_PitchDimension)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_SolAcikBoy)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_SagAcikBoy)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_BurulmaSonrasiBoy2)).EndInit();
@@ -573,9 +576,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nud_CableSection)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_CableDiameter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_Cable2Color)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_Cabel1Color)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_CableDirection)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nud_PitchDimension)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

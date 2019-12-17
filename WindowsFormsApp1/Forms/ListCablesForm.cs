@@ -38,7 +38,7 @@ namespace WindowsFormsApp1.Forms
             if (allowProtocol == DataTypeComStatus.readableCables)
             {
                 dataCollection = global.dataExchange.GetData<Cable>();
-                if(dataCollection!= null) List(dataCollection);
+                if (dataCollection != null) ListData.List<Cable>(dataCollection, lV_Cables);
 
             }
         }

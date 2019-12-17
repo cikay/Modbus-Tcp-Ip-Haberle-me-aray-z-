@@ -20,27 +20,7 @@ namespace WindowsFormsApp1.Forms
 
         private void ListProductForm_Load(object sender, EventArgs e)
         {
-            
-            infoControls.comType = commandType.read;
-            infoControls.requestDataType = RequestDataType.products;
-            DataTypeComStatus allowProtocol=dataExchange.DataExchangeProtocol(infoControls);
-
-            if (allowProtocol==DataTypeComStatus.readableProducts)
-            {
-                dataCollection = dataExchange.GetData<Product>();
-                foreach (KeyValuePair<int, Product> KeyValuePairProduct in dataCollection)
-                {
-                    productData = KeyValuePairProduct.Value;
-                    string[] row =
-                    {
-                        productData.ProductName.Value, productData.LabelName.Value, productData.Cable1Color.Value,
-                        productData.Cable2Color.Value, productData.Quantity.Value, productData.CableSection.Value,
-                        productData.CableDiameter.Value, productData.CableDirection.Value
-                    };
-                    var lvi = new ListViewItem(row);
-                    listView_Products.Items.Add(lvi);
-                }
-            }
+            ListProducts();
         }
 
         private void detailsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -63,6 +43,43 @@ namespace WindowsFormsApp1.Forms
                 }
             }
         }
+
+        private void btn_Update_Click(object sender, EventArgs e)
+        {
+            ListProducts();
+        }
+
+        private void btn_AddProduct_Click(object sender, EventArgs e)
+        {
+            AddProductForm addProduct = new AddProductForm();
+            addProduct.ShowDialog();
+        }
+
+        private void ListProducts()
+        {
+            infoControls.comType = commandType.read;
+            infoControls.requestDataType = RequestDataType.products;
+            DataTypeComStatus allowProtocol = dataExchange.DataExchangeProtocol(infoControls);
+
+            if (allowProtocol == DataTypeComStatus.readableProducts)
+            {
+                dataCollection = dataExchange.GetData<Product>();
+                foreach (KeyValuePair<int, Product> KeyValuePairProduct in dataCollection)
+                {
+                    productData = KeyValuePairProduct.Value;
+                    string[] row =
+                    {
+                        productData.ProductName.Value, productData.LabelName.Value, productData.Cable1Color.Value,
+                        productData.Cable2Color.Value, productData.Quantity.Value, productData.CableSection.Value,
+                        productData.CableDiameter.Value, productData.CableDirection.Value
+                    };
+                    var lvi = new ListViewItem(row);
+                    listView_Products.Items.Add(lvi);
+                }
+            }
+        }
+
+       
     }
 }
 

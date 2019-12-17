@@ -30,21 +30,46 @@ namespace WindowsFormsApp1
             }
             
             modbusClient.ConnectedChanged += new ConnectedChangedHandler(UpdateConnectedChanged);
-            cmd = new SqlCommand();
-
-            
         }
 
         public void UpdateConnectedChanged(object sender)
         {
 
+            ConnectionStatus();
+        }
+       
+        public void Connect(Label lb_ConnectionStatus)
+        {
+            
+            try
+            {
+                modbusClient.Connect();
+                lb_ConnectionStatus.Text = "Bağlandı!";
+            }
+            catch(Exception ex)
+            {
+                lb_ConnectionStatus.Text = "Bağlanamadı!";
+            }
+        }
+
+        public void DisConnect(Label lb_ConnectionStatus)
+        {
+            
+            try
+            {
+                modbusClient.Disconnect();
+                lb_ConnectionStatus.Text = "Bağlı değil!";
+            }
+            catch
+            {
+                MessageBox.Show("Bağlantı kesilemedi!!");
+            }
+        }
+
+        public void ConnectionStatus()
+        {
             IntPtr m = Application.OpenForms["TwistMainFormCUI"].Handle;
-
-            //MenuStrip menuStrip = Forms.TwistMainFormCUI.FromHandle(m).Controls.Find("menuStrip1", true).FirstOrDefault() as MenuStrip;
-            //Button btn_DisConnect = Forms.ListProductsForm.FromHandle(m).Controls.Find("btn_DisConnect", true).FirstOrDefault() as Button;
-            //Button btn_Connect = Forms.ListProductsForm.FromHandle(m).Controls.Find("btn_Connect", true).FirstOrDefault() as Button;
             ToolStrip tStrip_Connection = Forms.TwistMainFormCUI.FromHandle(m).Controls.Find("tStrip_Connection", true).FirstOrDefault() as ToolStrip;
-
             ToolStripItem Label_ConnectionStatus = tStrip_Connection.Items["tStripL_ConnectionStatus"];
             ToolStripItem Btn_Connect = tStrip_Connection.Items["tStripBtn_Connect"];
             ToolStripItem Btn_DisConnect = tStrip_Connection.Items["tStripBtn_DisConnect"];
@@ -66,70 +91,7 @@ namespace WindowsFormsApp1
                 MessageBox.Show("Bağlantı koptu!");
             }
         }
-        
-        //public static void UpdateConnectionChanged<T>(T form) where T: Form 
-        //{
-        //    IntPtr m = Application.OpenForms[form.Name].Handle;
 
-           
-
-        //    T menuStrip = form.FromHandle(m).Controls.Find("btn_Connect", true).FirstOrDefault() as T;
-        //    Button btn_DisConnect = MainFormCUI.FromHandle(m).Controls.Find("btn_DisConnect", true).FirstOrDefault() as Button;
-        //    Label lb_ConnectionInfo = MainFormCUI.FromHandle(m).Controls.Find("lb_ConnectionStatus", true).FirstOrDefault() as Label;
-
-
-        //    if (modbusClient.Connected)
-        //    {
-        //        lb_ConnectionInfo.Text = "Bağlandı!";
-        //        menuStrip.Items["ConnectToolStripMenuItem"].Enabled = false;
-        //        menuStrip.Items["DisConnectToolStripMenuItem"].Enabled = true;
-        //        menuStrip.Items["ConnectToolStripMenuItem"].BackColor = Color.Gray;
-        //        menuStrip.Items["DisConnectToolStripMenuItem"].BackColor = Color.DeepSkyBlue;
-        //    }
-        //    else
-        //    {
-        //        lb_ConnectionInfo.Text = "Bağlı değil!";
-        //        menuStrip.Items["ConnectToolStripMenuItem"].Enabled = true;
-        //        menuStrip.Items["DisConnectToolStripMenuItem"].Enabled = false;
-        //        menuStrip.Items["ConnectToolStripMenuItem"].BackColor = Color.DeepSkyBlue;
-        //        menuStrip.Items["DisConnectToolStripMenuItem"].BackColor = Color.Gray;
-        //        MessageBox.Show("Bağlantı koptu!");
-        //    }
-        //}
-
-
-        public void Connect(Label lb_ConnectionStatus)
-        {
-            try
-            {
-                modbusClient.Connect();
-                lb_ConnectionStatus.Text = "Bağlandı!";
-            }
-            catch(Exception ex)
-            {
-                lb_ConnectionStatus.Text = "Bağlanamadı!";
-            }
-        }
-
-        public void ChangeControlsInfo()
-        {
-
-        }
-
-
-
-        public void DisConnect(Label lb_ConnectionStatus)
-        {
-            try
-            {
-                modbusClient.Disconnect();
-                lb_ConnectionStatus.Text = "Bağlı değil!";
-            }
-            catch
-            {
-                MessageBox.Show("Bağlantı kesilemedi!!");
-            }
-        }
 
     }
 }

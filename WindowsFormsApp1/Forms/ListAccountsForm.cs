@@ -52,7 +52,7 @@ namespace WindowsFormsApp1.Forms
             if (protocolAllow == DataTypeComStatus.readableAccounts)
             {
                 dataCollection = global.dataExchange.GetData<Account>();
-                if(dataCollection!=null) List(dataCollection);
+                if (dataCollection != null) ListData.List<Account>(dataCollection, lV_Users);
 
             }
         }

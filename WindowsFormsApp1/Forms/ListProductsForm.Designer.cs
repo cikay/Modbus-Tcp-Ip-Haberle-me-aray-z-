@@ -40,6 +40,8 @@
             this.CableDirection = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cms_ProductDetails = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.detailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btn_Update = new System.Windows.Forms.Button();
+            this.btn_AddProduct = new System.Windows.Forms.Button();
             this.cms_ProductDetails.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +58,7 @@
             this.CableDirection});
             this.listView_Products.ContextMenuStrip = this.cms_ProductDetails;
             this.listView_Products.HideSelection = false;
-            this.listView_Products.Location = new System.Drawing.Point(36, 33);
+            this.listView_Products.Location = new System.Drawing.Point(31, 83);
             this.listView_Products.Name = "listView_Products";
             this.listView_Products.Size = new System.Drawing.Size(639, 452);
             this.listView_Products.TabIndex = 39;
@@ -127,14 +129,36 @@
             this.detailsToolStripMenuItem.Text = "Detaylar";
             this.detailsToolStripMenuItem.Click += new System.EventHandler(this.detailsToolStripMenuItem_Click);
             // 
-            // ListProductForm
+            // btn_Update
+            // 
+            this.btn_Update.Location = new System.Drawing.Point(803, 12);
+            this.btn_Update.Name = "btn_Update";
+            this.btn_Update.Size = new System.Drawing.Size(75, 35);
+            this.btn_Update.TabIndex = 40;
+            this.btn_Update.Text = "Güncelle";
+            this.btn_Update.UseVisualStyleBackColor = true;
+            this.btn_Update.Click += new System.EventHandler(this.btn_Update_Click);
+            // 
+            // btn_AddProduct
+            // 
+            this.btn_AddProduct.Location = new System.Drawing.Point(884, 12);
+            this.btn_AddProduct.Name = "btn_AddProduct";
+            this.btn_AddProduct.Size = new System.Drawing.Size(75, 35);
+            this.btn_AddProduct.TabIndex = 40;
+            this.btn_AddProduct.Text = "Ekle";
+            this.btn_AddProduct.UseVisualStyleBackColor = true;
+            this.btn_AddProduct.Click += new System.EventHandler(this.btn_AddProduct_Click);
+            // 
+            // ListProductsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 525);
+            this.ClientSize = new System.Drawing.Size(996, 547);
             this.ControlBox = false;
+            this.Controls.Add(this.btn_AddProduct);
+            this.Controls.Add(this.btn_Update);
             this.Controls.Add(this.listView_Products);
-            this.Name = "ListProductForm";
+            this.Name = "ListProductsForm";
             this.ShowIcon = false;
             this.Load += new System.EventHandler(this.ListProductForm_Load);
             this.cms_ProductDetails.ResumeLayout(false);
@@ -155,5 +179,7 @@
         private System.Windows.Forms.ColumnHeader CableDirection;
         private System.Windows.Forms.ContextMenuStrip cms_ProductDetails;
         private System.Windows.Forms.ToolStripMenuItem detailsToolStripMenuItem;
+        private System.Windows.Forms.Button btn_Update;
+        private System.Windows.Forms.Button btn_AddProduct;
     }
 }

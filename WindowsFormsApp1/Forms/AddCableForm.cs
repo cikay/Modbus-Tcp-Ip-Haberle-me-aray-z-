@@ -19,11 +19,17 @@ namespace WindowsFormsApp1.Forms
         }
         Global global = new Global();
         SystemInfoControls infoControls = new SystemInfoControls();
+     
+
+        private void AddCableForm_Load(object sender, EventArgs e)
+        {
+
+        }
         private void btn_AddCable_Click(object sender, EventArgs e)
         {
             infoControls.comType = commandType.write;
             infoControls.requestDataType = RequestDataType.cables;
-            DataTypeComStatus allowProtocol=global.dataExchange.DataExchangeProtocol(infoControls);
+            DataTypeComStatus allowProtocol = global.dataExchange.DataExchangeProtocol(infoControls);
             if (allowProtocol == DataTypeComStatus.writeableCables)
             {
                 Cable cable = new Cable();
