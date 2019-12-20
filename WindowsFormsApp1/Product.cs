@@ -10,6 +10,7 @@ namespace WindowsFormsApp1
 {
     public class Product: IEnumerable<Parameters>
     {
+        public int Increment { get; set; } = 75;
         public Parameters ProductName { get; set; } = new Parameters {Name="ProductName", StartingAdress="0", Length = "15", ConvertToAsciiString = true };
         public Parameters LabelName { get; set; } = new Parameters {Name="LabelName", StartingAdress = "30", Length = "1", ConvertToAsciiString = true };
         public Parameters FowardCircuit { get; set; } = new Parameters {Name="FowradCircuit", StartingAdress = "31", Length = "1", ConvertToAsciiString = false };

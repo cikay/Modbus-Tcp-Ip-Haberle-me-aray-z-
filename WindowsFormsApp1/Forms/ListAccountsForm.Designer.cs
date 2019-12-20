@@ -47,7 +47,7 @@
             this.level,
             this.protection});
             this.lV_Users.HideSelection = false;
-            this.lV_Users.Location = new System.Drawing.Point(71, 66);
+            this.lV_Users.Location = new System.Drawing.Point(30, 30);
             this.lV_Users.Name = "lV_Users";
             this.lV_Users.Size = new System.Drawing.Size(430, 374);
             this.lV_Users.TabIndex = 0;
@@ -81,9 +81,9 @@
             // 
             // btn_Update
             // 
-            this.btn_Update.Location = new System.Drawing.Point(651, 21);
+            this.btn_Update.Location = new System.Drawing.Point(800, 20);
             this.btn_Update.Name = "btn_Update";
-            this.btn_Update.Size = new System.Drawing.Size(75, 31);
+            this.btn_Update.Size = new System.Drawing.Size(60, 35);
             this.btn_Update.TabIndex = 1;
             this.btn_Update.Text = "Güncelle";
             this.btn_Update.UseVisualStyleBackColor = true;
@@ -91,24 +91,24 @@
             // 
             // btn_AddAccount
             // 
-            this.btn_AddAccount.Location = new System.Drawing.Point(570, 21);
+            this.btn_AddAccount.Location = new System.Drawing.Point(866, 20);
             this.btn_AddAccount.Name = "btn_AddAccount";
-            this.btn_AddAccount.Size = new System.Drawing.Size(75, 31);
+            this.btn_AddAccount.Size = new System.Drawing.Size(60, 35);
             this.btn_AddAccount.TabIndex = 2;
-            this.btn_AddAccount.Text = "Hesap Ekle";
+            this.btn_AddAccount.Text = "Ekle";
             this.btn_AddAccount.UseVisualStyleBackColor = true;
             this.btn_AddAccount.Click += new System.EventHandler(this.btn_AddAccount_Click);
             // 
-            // AccountsForm
+            // ListAccountsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(753, 496);
+            this.ClientSize = new System.Drawing.Size(1052, 585);
             this.Controls.Add(this.btn_AddAccount);
             this.Controls.Add(this.btn_Update);
             this.Controls.Add(this.lV_Users);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "AccountsForm";
+            this.Name = "ListAccountsForm";
             this.ShowIcon = false;
             this.Load += new System.EventHandler(this.AccountsForm_Load);
             this.ResumeLayout(false);

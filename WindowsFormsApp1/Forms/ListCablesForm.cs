@@ -19,7 +19,7 @@ namespace WindowsFormsApp1.Forms
         }
         Global global = new Global();
         SystemInfoControls infoControls = new SystemInfoControls();
-        Dictionary<int, Cable> dataCollection = new Dictionary<int, Cable>();
+        Dictionary<int, Cable> dataCollection;
         private void ListCablesForm_Load(object sender, EventArgs e)
         {
             ListCables();
@@ -27,6 +27,8 @@ namespace WindowsFormsApp1.Forms
 
         private void btn_Update_Click(object sender, EventArgs e)
         {
+            lV_Cables.Items.Clear();
+            lV_Cables.Refresh();
             ListCables();
         }
 
@@ -35,28 +37,13 @@ namespace WindowsFormsApp1.Forms
             infoControls.comType = commandType.read;
             infoControls.requestDataType = RequestDataType.cables;
             DataTypeComStatus allowProtocol = global.dataExchange.DataExchangeProtocol(infoControls);
+            ListData listData = new ListData();
             if (allowProtocol == DataTypeComStatus.readableCables)
             {
-                dataCollection = global.dataExchange.GetData<Cable>();
-                if (dataCollection != null) ListData.List<Cable>(dataCollection, lV_Cables);
-
-            }
-        }
-
-        public void List(Dictionary<int, Cable> dataCollection)
-        {
-            foreach (KeyValuePair<int, Cable> keyValuePair in dataCollection)
-            {
-                Cable cable = keyValuePair.Value;
-
-                string[] row = { };
-                int i = 0;
-                foreach (Parameters parameters in cable)
-                {
-                    row[i++] = parameters.Value;
-                }
-                ListViewItem lvi = new ListViewItem(row);
-                lV_Cables.Items.Add(lvi);
+                Cable cable = new Cable();
+               
+                lV_Cables= listData.List<Cable>(lV_Cables);
+               
             }
         }
 

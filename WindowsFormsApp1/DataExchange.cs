@@ -28,48 +28,55 @@ namespace WindowsFormsApp1
                 Thread.Sleep(250);
 
             }
+            Values = modbus.modbusClient.ReadHoldingRegisters((int)RegisterAdress.AccessSystem, 1);
             try
             {
                 if (Values[0] == (int)AccessSystem.onay)
                 {
                     controls.lbAccesSystem.Text = "Sisteme erişim sağlandı";
 
-                    int[] reqData = new int[] { (int)RequestData.talep, (int)controls.requestDataType, (int)controls.comType };
+                    int[] reqData = new int[] { (int)RequestData.talep, (int)controls.requestDataType, (int)controls.comType, (int)DataStatus.musait, (int)DataStatus.musait, (int)DataStatus.musait };
 
                     modbus.modbusClient.WriteMultipleRegisters((int)RegisterAdress.RequestData, reqData); //veri talebi
                     modbus.modbusClient.WriteSingleCoil(135, true);
-                    Thread.Sleep(250);
-                    Values = modbus.modbusClient.ReadHoldingRegisters((int)RegisterAdress.RequestData, 3); //veri talebi durumu
+                    Thread.Sleep(200);
+                    Values = modbus.modbusClient.ReadHoldingRegisters((int)RegisterAdress.RequestData, 4); //veri talebi durumu
 
                     if (Values[0] == (int)RequestData.onay)
                     {
-                        if (controls.comType == commandType.read)
+                        if (Values[2] == (int)commandType.read)
                         {
-                            if (controls.requestDataType == RequestDataType.users)
+                            if (Values[1] == (int)RequestDataType.users)
                             {
-                                return (int)DataTypeComStatus.readableAccounts;
+                                return DataTypeComStatus.readableAccounts;
                             }
-                            else if (controls.requestDataType == RequestDataType.products)
+                            else if (Values[1] == (int)RequestDataType.products)
                             {
+                               
                                 return DataTypeComStatus.readableProducts;
                             }
-                            else if (controls.requestDataType == RequestDataType.cables)
+                            else if (Values[1] == (int)RequestDataType.cables)
                             {
+                                
                                 return DataTypeComStatus.readableCables;
                             }
                         }
-                        else if (controls.comType == commandType.write)
+                        else if (Values[2] == (int)commandType.write)
                         {
-                            if (controls.requestDataType == RequestDataType.users)
+                            if (Values[1] == (int)RequestDataType.users)
                             {
+                                
                                 return DataTypeComStatus.writeableAccounts;
+
                             }
-                            else if (controls.requestDataType == RequestDataType.products)
+                            else if (Values[1] == (int)RequestDataType.products)
                             {
                                 return DataTypeComStatus.writeableProducts;
                             }
-                            else if (controls.requestDataType == RequestDataType.cables)
+                            else if (Values[1] == (int)RequestDataType.cables)
                             {
+                                
+                                
                                 return DataTypeComStatus.writeableCables;
                             }
                         }
@@ -85,9 +92,7 @@ namespace WindowsFormsApp1
                 {
                     controls.lbAccesSystem.Text = "Sistem erişim talebi reddedildi!";
                 }
-                Values = modbus.modbusClient.ReadHoldingRegisters((int)RegisterAdress.AccessSystem, 4); //sistem erişim durumu
-                modbus.modbusClient.WriteSingleRegister((int)RegisterAdress.DataStatus, 0); //veri talebi
-                modbus.modbusClient.WriteSingleCoil(135, true);
+                
                 Thread.Sleep(250);
             }
             catch (Exception)
@@ -96,41 +101,6 @@ namespace WindowsFormsApp1
             }
 
             return DataTypeComStatus.Non;
-        }
-
-        public void ListUsers(ref SystemInfoControls controls)
-        {
-
-            int[] AccountCount = modbus.modbusClient.ReadHoldingRegisters((int)RegisterAdress.DataCount, 1);
-
-            int[] dataStatus = modbus.modbusClient.ReadHoldingRegisters((int)RegisterAdress.DataStatus, 1);
-
-            int[] Values = new int[120];
-
-
-            for (int i = 0; i < AccountCount[0]; i++)
-            {
-                int increment = i * 30;
-
-                if (increment % 120 == 0)
-                {
-                    Values = modbus.modbusClient.ReadHoldingRegisters((int)RegisterAdress.usersDataOffSet + increment, 120);
-                    increment = 0;
-                }
-
-                ListViewItem lvi = new ListViewItem();
-                lvi.Text = ModbusClient.ConvertRegistersToString(Values, increment % 120, (int)EUser.nameLenght);
-                lvi.SubItems.Add(ModbusClient.ConvertRegistersToString(Values, 13 + (increment % 120), (int)EUser.barcodPinLength));
-                lvi.SubItems.Add(Values[27 + (increment % 120)].ToString());
-                lvi.SubItems.Add(Values[28 + (increment % 120)].ToString());
-                lvi.SubItems.Add(Values[29 + (increment % 120)].ToString());
-                controls.lV_Users.Items.Add(lvi);
-
-            }
-
-            modbus.modbusClient.WriteSingleRegister((int)RegisterAdress.DataStatus, 2);
-            modbus.modbusClient.WriteSingleCoil(135, true);
-            Thread.Sleep(250);
         }
 
         public void SendData<T>(T data) 
@@ -155,23 +125,57 @@ namespace WindowsFormsApp1
 
         public Dictionary<int, T> GetData<T>()
         {
-            T data=Activator.CreateInstance<T>();
+            
             Dictionary<int, T> DataCollection = new Dictionary<int, T>();
+            
+            int[] veriDurumu =modbus.modbusClient.ReadHoldingRegisters((int)RegisterAdress.DataStatus, 1);
+            if (veriDurumu[0] != (int)DataStatus.hazir)
+            {
+                DataCollection = null;
+                return DataCollection;
+            }
+
             int[] AccountCount = modbus.modbusClient.ReadHoldingRegisters((int)RegisterAdress.DataCount, 1);
             PropertyInfo[] Properties = typeof(T).GetProperties();
-            string stringValue;
+            string stringValue=string.Empty;
+           
+            int Increment = 0;
 
+            int startingAdress=0;
             for (int i = 0; i < AccountCount[0]; i++)
             {
+                T data = Activator.CreateInstance<T>();
+                if (i == 0)
+                {
+                    Increment = 0;
+
+                }
+                else if (i == 1)
+                {
+                    foreach (var inc in Properties)
+                    {
+                        if (string.Compare(inc.Name, "Increment") == 0)
+                        {
+                            Increment = (int)inc.GetValue(data);
+                            break;
+                        }
+                    }
+                }
+
                 foreach (var prop in Properties)
                 {
+                   
+                    if (string.Compare(prop.Name, "Increment") == 0)
+                    {
+                        continue;
+                    }
 
                     Parameters parameters = (Parameters)(prop.GetValue(data));
                     int length = Convert.ToInt32(parameters.Length);
-                    int startingAdress = Convert.ToInt32(parameters.StartingAdress);
+                    startingAdress += Convert.ToInt32(parameters.StartingAdress);
+                    
 
-                    int[] registerValues = modbus.modbusClient.ReadHoldingRegisters(5000 + startingAdress, length);
-
+                    int[] registerValues = modbus.modbusClient.ReadHoldingRegisters(5000+Increment+startingAdress, length);
 
                     if (parameters.ConvertToAsciiString)
                     {
@@ -180,17 +184,33 @@ namespace WindowsFormsApp1
                     }
                     else
                     {
+                        //float[] fValues = new float[2*registerValues.Length];
+                        //for (int index = 0; index < registerValues.Length; index++)
+                        //{
+                        //    fValues[i] = Convert.ToSingle(registerValues[i]);
+                            
+                        //}
                         stringValue = string.Join("", registerValues);
-                    }
 
-                    parameters.Value = stringValue;
+                    }
                     
+                    //if (!prop.Equals(Properties.Last()))
+                    //{
+                    //    startingAdress -= Convert.ToInt32(parameters.StartingAdress);
+                    //}
+                    startingAdress -= Convert.ToInt32(parameters.StartingAdress);
+                    parameters.Value = stringValue;
 
                 }
+                
+                startingAdress += Increment;
                 DataCollection.Add(i, data);
             }
-            
+            int[] alindi = { (int)DataStatus.alindi };
+            modbus.modbusClient.WriteMultipleRegisters((int)RegisterAdress.DataStatus, alindi);
             return DataCollection;
         }
+
+
     }
 }

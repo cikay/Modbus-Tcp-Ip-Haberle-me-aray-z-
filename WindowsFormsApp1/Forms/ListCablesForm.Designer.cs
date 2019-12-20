@@ -47,7 +47,7 @@
             this.Direction,
             this.Color});
             this.lV_Cables.HideSelection = false;
-            this.lV_Cables.Location = new System.Drawing.Point(41, 44);
+            this.lV_Cables.Location = new System.Drawing.Point(30, 30);
             this.lV_Cables.Name = "lV_Cables";
             this.lV_Cables.Size = new System.Drawing.Size(398, 487);
             this.lV_Cables.TabIndex = 0;
@@ -85,9 +85,9 @@
             // 
             // btn_Update
             // 
-            this.btn_Update.Location = new System.Drawing.Point(617, 30);
+            this.btn_Update.Location = new System.Drawing.Point(800, 20);
             this.btn_Update.Name = "btn_Update";
-            this.btn_Update.Size = new System.Drawing.Size(79, 32);
+            this.btn_Update.Size = new System.Drawing.Size(60, 35);
             this.btn_Update.TabIndex = 1;
             this.btn_Update.Text = "Güncelle";
             this.btn_Update.UseVisualStyleBackColor = true;
@@ -95,11 +95,11 @@
             // 
             // btn_AddCable
             // 
-            this.btn_AddCable.Location = new System.Drawing.Point(702, 30);
+            this.btn_AddCable.Location = new System.Drawing.Point(866, 20);
             this.btn_AddCable.Name = "btn_AddCable";
-            this.btn_AddCable.Size = new System.Drawing.Size(75, 32);
+            this.btn_AddCable.Size = new System.Drawing.Size(60, 35);
             this.btn_AddCable.TabIndex = 2;
-            this.btn_AddCable.Text = "Kablo Ekle";
+            this.btn_AddCable.Text = "Ekle";
             this.btn_AddCable.UseVisualStyleBackColor = true;
             this.btn_AddCable.Click += new System.EventHandler(this.btn_AddCable_Click);
             // 
@@ -107,7 +107,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(832, 561);
+            this.ClientSize = new System.Drawing.Size(970, 561);
             this.ControlBox = false;
             this.Controls.Add(this.btn_AddCable);
             this.Controls.Add(this.btn_Update);

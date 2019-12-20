@@ -8,8 +8,9 @@ namespace WindowsFormsApp1.Enums
 {
     enum DataStatus
     {
-        hazır=1,
-        alındı=2,
+        musait=0,
+        hazir=1,
+        alindi=2,
         bitti=3
     }
 }

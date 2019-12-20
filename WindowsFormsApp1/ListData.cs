@@ -10,23 +10,50 @@ namespace WindowsFormsApp1
 {
     public class ListData
     {
-        public static void List<T>(Dictionary<int, T> dataCollection, ListView listView)
+        static Global global = new Global();
+        public ListView List<T>(ListView listView)
         {
+            //ListView listView = new ListView();
+            Dictionary<int, T> dataCollection = global.dataExchange.GetData<T>();
+            if (dataCollection == null) return listView;
             foreach (KeyValuePair<int, T> keyValuePair in dataCollection)
             {
                 T data = keyValuePair.Value;
                 PropertyInfo[] Properties=typeof(T).GetProperties();
-
-                string[] row = { };
-                int i = 0;
-                foreach (PropertyInfo prop in Properties)
+                ListViewItem lvi = new ListViewItem();
+                string[] row = new string[dataCollection.Values.Count];
+                bool exist = false;
+                
+                Parameters parameters = (Parameters)Properties[1].GetValue(data);
+                lvi.Text = parameters.Value;
+                for(int index=0;index<listView.Items.Count;index++)
                 {
-                    Parameters parameters=(Parameters)prop.GetValue(data);
-                    row[i++] = parameters.Value;
+                    if (string.Compare(listView.Items[index].Text, lvi.Text) == 0)
+                    {
+                        exist = true;
+                        break;
+                    }
                 }
-                ListViewItem lvi = new ListViewItem(row);
-                listView.Items.Add(lvi);
+
+                if (!exist)
+                {
+                    for (int i = 0; i < Properties.Length; ++i)
+                    {
+                        if (string.Compare(Properties[i].Name, "Increment") == 0) continue;
+                        parameters = (Parameters)Properties[i].GetValue(data);
+                        lvi.SubItems.Add(parameters.Value);
+                    }
+                    listView.Items.Add(lvi);
+                }
             }
+            return listView;
+        }
+
+        public Dictionary<int, T> dene<T>(T a)
+        {
+            Dictionary<int, T> datacolection = new Dictionary<int, T>();
+
+            return datacolection;
         }
     }
 }

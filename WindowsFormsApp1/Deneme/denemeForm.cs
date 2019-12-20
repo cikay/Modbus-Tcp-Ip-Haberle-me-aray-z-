@@ -46,19 +46,6 @@ namespace WindowsFormsApp1
             int[] register = modbus.modbusClient.ReadHoldingRegisters(Convert.ToInt32(tB_Adress.Text), 1);
 
 
-
-
-            //string deger;
-
-            //int i = 0;
-
-            //foreach (int value in register)
-            //{
-
-            //    deger+= value.ToString();
-                
-            //}
-
         }
     }
 }

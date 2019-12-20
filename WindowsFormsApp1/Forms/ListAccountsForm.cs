@@ -23,8 +23,6 @@ namespace WindowsFormsApp1.Forms
 
             infoControls.lV_Users = lV_Users;
         }
-      
-       
 
         private void AccountsForm_Load(object sender, EventArgs e)
         {
@@ -46,33 +44,14 @@ namespace WindowsFormsApp1.Forms
         private void ListAccounts()
         {
             infoControls.comType = commandType.read;
-            infoControls.requestDataType = RequestDataType.products;
+            infoControls.requestDataType = RequestDataType.users;
             DataTypeComStatus protocolAllow = global.dataExchange.DataExchangeProtocol(infoControls);
-
+            ListData listData = new ListData();
             if (protocolAllow == DataTypeComStatus.readableAccounts)
             {
-                dataCollection = global.dataExchange.GetData<Account>();
-                if (dataCollection != null) ListData.List<Account>(dataCollection, lV_Users);
-
+               
+                lV_Users = listData.List<Account>(lV_Users);
             }
         }
-
-        public void List(Dictionary<int, Account> dataCollection)
-        {
-            foreach (KeyValuePair<int, Account> keyValuePair in dataCollection)
-            {
-                Account account = keyValuePair.Value;
-
-                string[] row = { };
-                int i = 0;
-                foreach (Parameters parameters in account)
-                {
-                    row[i++] = parameters.Value;
-                }
-                ListViewItem lvi = new ListViewItem(row);
-                lV_Users.Items.Add(lvi);
-            }
-        }
-
     }
 }

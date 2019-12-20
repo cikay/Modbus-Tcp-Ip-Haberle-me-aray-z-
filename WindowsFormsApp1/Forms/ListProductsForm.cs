@@ -14,8 +14,8 @@ namespace WindowsFormsApp1.Forms
         }
         DataExchange dataExchange = new DataExchange();
         SystemInfoControls infoControls = new SystemInfoControls();
-      
-        Dictionary<int, Product> dataCollection = new Dictionary<int, Product>();
+
+        Dictionary<int, Product> dataCollection;
         Product productData = new Product();
 
         private void ListProductForm_Load(object sender, EventArgs e)
@@ -63,23 +63,26 @@ namespace WindowsFormsApp1.Forms
 
             if (allowProtocol == DataTypeComStatus.readableProducts)
             {
+                Product product = new Product();
                 dataCollection = dataExchange.GetData<Product>();
-                foreach (KeyValuePair<int, Product> KeyValuePairProduct in dataCollection)
+                if (dataCollection != null)
                 {
-                    productData = KeyValuePairProduct.Value;
-                    string[] row =
+                    foreach (KeyValuePair<int, Product> KeyValuePairProduct in dataCollection)
                     {
+                        productData = KeyValuePairProduct.Value;
+                        string[] row =
+                        {
                         productData.ProductName.Value, productData.LabelName.Value, productData.Cable1Color.Value,
                         productData.Cable2Color.Value, productData.Quantity.Value, productData.CableSection.Value,
                         productData.CableDiameter.Value, productData.CableDirection.Value
-                    };
-                    var lvi = new ListViewItem(row);
-                    listView_Products.Items.Add(lvi);
+                        };
+                        var lvi = new ListViewItem(row);
+                        listView_Products.Items.Add(lvi);
+                    }
                 }
+                
             }
         }
-
-       
     }
 }
 

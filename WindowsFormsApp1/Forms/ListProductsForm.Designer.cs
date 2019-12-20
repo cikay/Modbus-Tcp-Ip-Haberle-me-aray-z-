@@ -58,7 +58,7 @@
             this.CableDirection});
             this.listView_Products.ContextMenuStrip = this.cms_ProductDetails;
             this.listView_Products.HideSelection = false;
-            this.listView_Products.Location = new System.Drawing.Point(31, 83);
+            this.listView_Products.Location = new System.Drawing.Point(30, 30);
             this.listView_Products.Name = "listView_Products";
             this.listView_Products.Size = new System.Drawing.Size(639, 452);
             this.listView_Products.TabIndex = 39;
@@ -131,9 +131,9 @@
             // 
             // btn_Update
             // 
-            this.btn_Update.Location = new System.Drawing.Point(803, 12);
+            this.btn_Update.Location = new System.Drawing.Point(800, 20);
             this.btn_Update.Name = "btn_Update";
-            this.btn_Update.Size = new System.Drawing.Size(75, 35);
+            this.btn_Update.Size = new System.Drawing.Size(60, 35);
             this.btn_Update.TabIndex = 40;
             this.btn_Update.Text = "Güncelle";
             this.btn_Update.UseVisualStyleBackColor = true;
@@ -141,9 +141,9 @@
             // 
             // btn_AddProduct
             // 
-            this.btn_AddProduct.Location = new System.Drawing.Point(884, 12);
+            this.btn_AddProduct.Location = new System.Drawing.Point(866, 20);
             this.btn_AddProduct.Name = "btn_AddProduct";
-            this.btn_AddProduct.Size = new System.Drawing.Size(75, 35);
+            this.btn_AddProduct.Size = new System.Drawing.Size(60, 35);
             this.btn_AddProduct.TabIndex = 40;
             this.btn_AddProduct.Text = "Ekle";
             this.btn_AddProduct.UseVisualStyleBackColor = true;

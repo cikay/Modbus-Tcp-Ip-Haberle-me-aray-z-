@@ -62,11 +62,11 @@
     </Compile>
     <Compile Include="CommonControls.cs" />
     <Compile Include="DataType.cs" />
-    <Compile Include="Deneme\deneme2.cs">
+    <Compile Include="Deneme\DDD.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Deneme\deneme2.Designer.cs">
-      <DependentUpon>deneme2.cs</DependentUpon>
+    <Compile Include="Deneme\DDD.Designer.cs">
+      <DependentUpon>DDD.cs</DependentUpon>
     </Compile>
     <Compile Include="Enums\DataTypeComStatus.cs" />
     <Compile Include="Forms\AddCableForm.cs">
@@ -167,8 +167,8 @@
       <DependentUpon>TypeForm.resx</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
-    <EmbeddedResource Include="Deneme\deneme2.resx">
-      <DependentUpon>deneme2.cs</DependentUpon>
+    <EmbeddedResource Include="Deneme\DDD.resx">
+      <DependentUpon>DDD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Deneme\denemeForm.resx">
       <DependentUpon>denemeForm.cs</DependentUpon>
